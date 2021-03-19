@@ -5,8 +5,8 @@ const {BigQuery} = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 
 const datasetId = 'bridge_erc20_token'
-const tableId = 'test_time'
-const priceTableId = 'test_price'
+const tableId = 'total_supply'
+const priceTableId = 'price'
 
 async function loadJsonToBigquerySupply(file) {
   const metadata = {
