@@ -1,7 +1,9 @@
-let Web3 = require('web3')
-let fetch = require('node-fetch')
+const Web3 = require('web3')
+const fetch = require('node-fetch')
 const fs = require('fs')
 const path = require('path')
+const moment = require('moment')
+const BN = require('bn.js')
 
 const { loadJsonToBigqueryPrice, loadJsonToBigquerySupply} = require('./bigquery')
 
@@ -54,21 +56,21 @@ async function main() {
             }
         }
 
-        while ( fs.existsSync('./supply') && fs.existsSync('./price')) {
-            try {
-                loadJsonToBigquerySupply('./supply')
-                loadJsonToBigqueryPrice('./price')
-                console.log('ERC_TOKEN_BALANCE updated')
-                console.log('ERC_TOKEN_PRICE updated')
-                break
-            } catch (e) {
-                console.error('error to submit to table: ')
-                console.error(e)
-                console.error('sleeping for 1 min')
-                await sleep(60000);
-                continue;
-            }
-        }
+        // while ( fs.existsSync('./supply') && fs.existsSync('./price')) {
+        //     try {
+        //         loadJsonToBigquerySupply('./supply')
+        //         loadJsonToBigqueryPrice('./price')
+        //         console.log('ERC_TOKEN_BALANCE updated')
+        //         console.log('ERC_TOKEN_PRICE updated')
+        //         break
+        //     } catch (e) {
+        //         console.error('error to submit to table: ')
+        //         console.error(e)
+        //         console.error('sleeping for 1 min')
+        //         await sleep(60000);
+        //         continue;
+        //     }
+        // }
 
         await sleep(900000);
   }
@@ -97,7 +99,7 @@ async function getTotalAmountFromEtherem() {
     },
   ]
 
-  let ERCTokenBalance = ERCtokenList.map((token) => ({name: token.name, supply: '0', timestamp: new Date().toLocaleString()}))
+  let ERCTokenBalance = ERCtokenList.map((token) => ({name: token.name, supply: 0, timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
 
   let tokenFeed = new Array(ERCtokenList)
   
@@ -108,7 +110,7 @@ async function getTotalAmountFromEtherem() {
   for(let i=0; i<ERCtokenList.length; i++) {
     try {
       let res = await tokenFeed[i].methods.totalSupply().call()
-      ERCTokenBalance[i].supply = res
+      ERCTokenBalance[i].supply = new BN(res).div(new BN(Math.pow(10, ERCtokenList[i].decimals)))
     } catch(err) {
         console.log("An error occured", err)
         return
@@ -118,11 +120,9 @@ async function getTotalAmountFromEtherem() {
   ERC_TOKEN_BALANCE = ERCTokenBalance.map(JSON.stringify).join('\n');
 }
 
-
-
 async function getPriceFromCoingecko() {
 
-  let ERCTokenPrice = ERCtokenList.map((token) => ({name: token.name, price: '0', timestamp: new Date().toLocaleString()}))
+  let ERCTokenPrice = ERCtokenList.map((token) => ({name: token.name, price: 0, timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
 
   for(let i=0;i<ERCtokenList.length;i++){
     let response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ERCtokenList[i].id}&vs_currencies=usd`, {
@@ -132,7 +132,7 @@ async function getPriceFromCoingecko() {
   })
     if(response.ok){
       let usdPrice = await response.json()
-      ERCTokenPrice[i].price = (usdPrice[ERCtokenList[i].id].usd).toString()
+      ERCTokenPrice[i].price = usdPrice[ERCtokenList[i].id].usd
     }
   }
 
