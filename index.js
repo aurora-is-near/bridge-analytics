@@ -38,7 +38,7 @@ function sleep(ms) {
 }
 
 async function main() {
-  console.log('update every 15 min')
+  console.log('update every 12 hour')
   while (true) {
         while (true) {
             try {
@@ -72,7 +72,7 @@ async function main() {
             }
         }
 
-        await sleep(900000);
+        await sleep(12*60*60000);
   }
 }
 
