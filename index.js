@@ -56,21 +56,21 @@ async function main() {
             }
         }
 
-        // while ( fs.existsSync('./supply') && fs.existsSync('./price')) {
-        //     try {
-        //         loadJsonToBigquerySupply('./supply')
-        //         loadJsonToBigqueryPrice('./price')
-        //         console.log('ERC_TOKEN_BALANCE updated')
-        //         console.log('ERC_TOKEN_PRICE updated')
-        //         break
-        //     } catch (e) {
-        //         console.error('error to submit to table: ')
-        //         console.error(e)
-        //         console.error('sleeping for 1 min')
-        //         await sleep(60000);
-        //         continue;
-        //     }
-        // }
+        while ( fs.existsSync('./supply') && fs.existsSync('./price')) {
+            try {
+                loadJsonToBigquerySupply('./supply')
+                loadJsonToBigqueryPrice('./price')
+                console.log('ERC_TOKEN_BALANCE updated')
+                console.log('ERC_TOKEN_PRICE updated')
+                break
+            } catch (e) {
+                console.error('error to submit to table: ')
+                console.error(e)
+                console.error('sleeping for 1 min')
+                await sleep(60000);
+                continue;
+            }
+        }
 
         await sleep(900000);
   }
@@ -110,7 +110,8 @@ async function getTotalAmountFromEtherem() {
   for(let i=0; i<ERCtokenList.length; i++) {
     try {
       let res = await tokenFeed[i].methods.totalSupply().call()
-      ERCTokenBalance[i].supply = new BN(res).div(new BN(Math.pow(10, ERCtokenList[i].decimals)))
+      let decimal = Math.pow(10,ERCtokenList[i].decimals).toString()
+      ERCTokenBalance[i].supply = new BN(res).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     } catch(err) {
         console.log("An error occured", err)
         return
