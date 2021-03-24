@@ -1,4 +1,3 @@
-const Web3 = require('web3')
 const fetch = require('node-fetch')
 const fs = require('fs')
 const path = require('path')
@@ -91,7 +90,7 @@ async function main() {
                   storeData(ERC_TOKEN_WITHDRAW, path.join(__dirname, 'assetHistory', `withdraw_${TIME_THRESHOLD}`))
                 }
                 if(ERC_TOKEN_ASSET) {
-                  storeData(ERC_TOKEN_DEPOSIT,path.join(__dirname, 'assetHistory', `asset_${TIME_THRESHOLD}`))
+                  storeData(ERC_TOKEN_ASSET,path.join(__dirname, 'assetHistory', `asset_${TIME_THRESHOLD}`))
                 }
                 console.log("asset updated")
                 console.log("current timestamp: " + TIME_THRESHOLD)
@@ -107,8 +106,7 @@ async function main() {
 
         while ( ERC_TOKEN_ASSET && fs.existsSync(`./assetHistory/asset_${TIME_THRESHOLD}`)) {
           try {
-              loadJsonToBigquery(`./assetHistory/asset_${TIME_THRESHOLD}`, 'deposit')
-              console.log('asset updated')
+              loadJsonToBigquery(`./assetHistory/asset_${TIME_THRESHOLD}`, 'asset')
               break
           } catch (e) {
               console.error('error to submit deposit to table: ')
@@ -122,7 +120,6 @@ async function main() {
         while ( ERC_TOKEN_DEPOSIT && fs.existsSync(`./assetHistory/deposit_${TIME_THRESHOLD}`)) {
             try {
                 loadJsonToBigquery(`./assetHistory/deposit_${TIME_THRESHOLD}`, 'deposit')
-                console.log('deposit updated')
                 break
             } catch (e) {
                 console.error('error to submit deposit to table: ')
@@ -136,7 +133,6 @@ async function main() {
         while ( ERC_TOKEN_WITHDRAW && fs.existsSync(`./assetHistory/withdraw_${TIME_THRESHOLD}`)) {
           try {
               loadJsonToBigquery(`./assetHistory/withdraw_${TIME_THRESHOLD}`, 'withdrawl')
-              console.log('submit updated')
               break
           } catch (e) {
               console.error('error to submit to table: ')
@@ -160,6 +156,19 @@ async function main() {
             continue;
         }
         }
+
+        while (fs.existsSync('./assetHistory/near_balance')) {
+          try {
+              loadJsonToBigquery('./assetHistory/near_balance', 'near_balance')
+              break
+          } catch (e) {
+              console.error('error to submit to volume table: ')
+              console.error(e)
+              console.error('sleeping for 1 min')
+              await sleep(60000);
+              continue;
+          }
+      }
 
         await sleep(12*60*60000);
   }
@@ -252,8 +261,8 @@ const getPrice = async (array) => {
 // near account amount
 
 const nearRpcUrl='https://rpc.mainnet.internal.near.org'
-
 const nearRpc = new nearApi.providers.JsonRpcProvider(nearRpcUrl)
+const { formatNearAmount } = require('near-api-js/lib/utils/format')
 
 nearRpc.callViewMethod = async function (contractName, methodName, args) {
   const account = new nearApi.Account({ provider: this });
@@ -261,11 +270,25 @@ nearRpc.callViewMethod = async function (contractName, methodName, args) {
 };
 
 async function getAccountAmountFromNear() {
-  let accountIdList = ERCtokenList.map((token) => ({name:token.name, }))
-  for(let i=0; i<ERCtokenList.length; i++) {
-    accountIdList[i] = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList[i].address.slice(2)})
+  let accountIdList = ERCtokenList.map((token) => ({
+                                                    symbol:token.name, 
+                                                    balance: 0,
+                                                    timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
+  for(let i=0; i<accountIdList.length; i++) {
+    let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList[i].address.slice(2)})
+    let account = await nearRpc
+    .sendJsonRpc("query", {
+      request_type: "view_account",
+      finality: "final",
+      account_id: accountId,
+    })
+    let balance = formatNearAmount(account.amount)
+    accountIdList[i].balance = parseFloat(balance.replace(/,/g, ''))
   }
-  console.log(accountIdList)
+
+  let file = accountIdList.map(JSON.stringify).join('\n')
+
+  storeData(file,path.join(__dirname, 'assetHistory', 'near_balance'))
 }
 
 

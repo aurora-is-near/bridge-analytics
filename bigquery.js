@@ -1,5 +1,6 @@
 // Import the Google Cloud client libraries
 const {BigQuery} = require('@google-cloud/bigquery');
+const fs = require('fs')
 
 // Instantiate client
 const bigquery = new BigQuery();
@@ -21,8 +22,15 @@ async function loadJsonToBigquery(file, table) {
   const errors = job.status.errors;
   if (errors && errors.length > 0) {
     throw errors;
+  } else {
+    fs.unlink(file,(err) => {
+      if (err) {
+          throw err;
+      }
+  
+      console.log("File is deleted.");
+  })
   }
-
 }
 
 
