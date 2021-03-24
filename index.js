@@ -4,8 +4,9 @@ const fs = require('fs')
 const path = require('path')
 const moment = require('moment')
 const BN = require('bn.js')
+const nearApi = require('near-api-js')
 
-const { loadJsonToBigqueryPrice, loadJsonToBigquerySupply} = require('./bigquery')
+const { loadJsonToBigquery } = require('./bigquery')
 
 const ERCtokenList = [
     { "name": "USDT",  "address": "0xdac17f958d2ee523a2206206994597c13d831ec7","id": "tether", "decimals": 6  },
@@ -27,117 +28,46 @@ const ERCtokenList = [
     { "name": "YFI",   "address": "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e","id": "yearn-finance", "decimals": 18 },
     { "name": "WETH",  "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", "id": "weth", "decimals": 18 }, 
     { "name": "HBTC",  "address": "0x0316eb71485b0ab14103307bf65a021042c6d380","id": "huobi-btc", "decimals": 18 }, 
-    { "name": "1INCH", "address": "0x111111111117dc0aa78b770fa6a738034120c302","id": "1inch", "decimals": 18 } 
+    { "name": "1INCH", "address": "0x111111111117dc0aa78b770fa6a738034120c302","id": "1inch", "decimals": 18 }, 
+    { "name": "MATIC", "address": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", id: "matic-network", "decimals": 18 },
+    { "name": "SNT",   "address": "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E", id: "status", "decimals": 18 }
 ]
 
-let ERC_TOKEN_BALANCE = null
-let ERC_TOKEN_PRICE = null
+const tokenMap = new Map([
+    ["USDT",  "tether"],
+    ["UNI",   "unicorn-token"],
+    ["LINK",  "link"],
+    ["USDC",  "usd-coin"], 
+    ["WBTC",  "wrapped-bitcoin"], 
+    ["AAVE",  "aave"],
+    ["CRO",   "crypto-com-chain"], 
+    ["FTT",   "freetip"], 
+    ["BUSD",  "binance-usd"], 
+    ["HT",    "huobi-token"], 
+    ["DAI",   "dai"],
+    ["SUSHI", "sushi"], 
+    ["SNX",   "havven"],
+    ["GRT",   "the-graph"], 
+    ["MKR",   "maker"], 
+    ["COMP",  "compound-coin"],
+    ["YFI",   "yearn-finance"],
+    ["WETH",  "weth"], 
+    ["HBTC",  "huobi-btc"], 
+    ["1INCH", "1inch"],
+    ["SNT",   "status"],
+    ["MATIC", "matic-network"] 
+])
+
+const ETH_ADDRESS = '0x23ddd3e3692d1861ed57ede224608875809e127f'
+const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
+
+let ERC_TOKEN_ASSET = null
+let ERC_TOKEN_DEPOSIT = null
+let ERC_TOKEN_WITHDRAW = null
+let TIME_THRESHOLD = 0
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-async function main() {
-  console.log('update every 12 hour')
-  while (true) {
-        while (true) {
-            try {
-                await getTotalAmountFromEtherem()
-                await getPriceFromCoingecko()
-                storeData(ERC_TOKEN_BALANCE,path.join(__dirname,'supply'))
-                storeData(ERC_TOKEN_PRICE, path.join(__dirname, 'price'))
-                break
-            } catch (e) {
-                console.error('error to get total supply: ')
-                console.error(e)
-                console.error('retrying in 1 min')
-                await sleep(60000);
-                continue;
-            }
-        }
-
-        while ( fs.existsSync('./supply') && fs.existsSync('./price')) {
-            try {
-                loadJsonToBigquerySupply('./supply')
-                loadJsonToBigqueryPrice('./price')
-                console.log('ERC_TOKEN_BALANCE updated')
-                console.log('ERC_TOKEN_PRICE updated')
-                break
-            } catch (e) {
-                console.error('error to submit to table: ')
-                console.error(e)
-                console.error('sleeping for 1 min')
-                await sleep(60000);
-                continue;
-            }
-        }
-
-        await sleep(12*60*60000);
-  }
-}
-
-async function getTotalAmountFromEtherem() {
-  let url = 'https://mainnet.infura.io/v3/5c58abcce1b14e4ab56e2ef4f801d86c'
-
-  const web3 = new Web3(url)
-
-  const ERC20TransferABI = [
-    {
-      constant: true,
-      inputs: [
-      ],
-      name: "totalSupply",
-      outputs: [
-        {
-          name: "balance",
-          type: "uint256",
-        },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-  ]
-
-  let ERCTokenBalance = ERCtokenList.map((token) => ({name: token.name, supply: 0, timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
-
-  let tokenFeed = new Array(ERCtokenList)
-  
-  for(let i=0; i<ERCtokenList.length; i++) {
-    tokenFeed[i] = new web3.eth.Contract(ERC20TransferABI, ERCtokenList[i].address)
-  }
-
-  for(let i=0; i<ERCtokenList.length; i++) {
-    try {
-      let res = await tokenFeed[i].methods.totalSupply().call()
-      let decimal = Math.pow(10,ERCtokenList[i].decimals).toString()
-      ERCTokenBalance[i].supply = new BN(res).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
-    } catch(err) {
-        console.log("An error occured", err)
-        return
-    }
-  }
-
-  ERC_TOKEN_BALANCE = ERCTokenBalance.map(JSON.stringify).join('\n');
-}
-
-async function getPriceFromCoingecko() {
-
-  let ERCTokenPrice = ERCtokenList.map((token) => ({name: token.name, price: 0, timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
-
-  for(let i=0;i<ERCtokenList.length;i++){
-    let response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ERCtokenList[i].id}&vs_currencies=usd`, {
-    headers: {
-      Accept: "application/json"
-    }
-  })
-    if(response.ok){
-      let usdPrice = await response.json()
-      ERCTokenPrice[i].price = usdPrice[ERCtokenList[i].id].usd
-    }
-  }
-
-  ERC_TOKEN_PRICE = ERCTokenPrice.map(JSON.stringify).join('\n');
 }
 
 const storeData = (data, path) => {
@@ -147,5 +77,196 @@ const storeData = (data, path) => {
     console.error(err)
   }
 }
+
+async function main() {
+  console.log('update every 12 hour')
+  while (true) {
+        while (true) {
+            try {
+                await getERCtokenAsset()
+                if(ERC_TOKEN_DEPOSIT){
+                  storeData(ERC_TOKEN_DEPOSIT,path.join(__dirname, 'assetHistory', `deposit_${TIME_THRESHOLD}`))
+                }
+                if(ERC_TOKEN_WITHDRAW) {
+                  storeData(ERC_TOKEN_WITHDRAW, path.join(__dirname, 'assetHistory', `withdraw_${TIME_THRESHOLD}`))
+                }
+                if(ERC_TOKEN_ASSET) {
+                  storeData(ERC_TOKEN_DEPOSIT,path.join(__dirname, 'assetHistory', `asset_${TIME_THRESHOLD}`))
+                }
+                console.log("asset updated")
+                console.log("current timestamp: " + TIME_THRESHOLD)
+                break
+            } catch (e) {
+                console.error('error to get total asset: ')
+                console.error(e)
+                console.error('retrying in 1 min')
+                await sleep(60000);
+                continue;
+            }
+        }
+
+        while ( ERC_TOKEN_ASSET && fs.existsSync(`./assetHistory/asset_${TIME_THRESHOLD}`)) {
+          try {
+              loadJsonToBigquery(`./assetHistory/asset_${TIME_THRESHOLD}`, 'deposit')
+              console.log('asset updated')
+              break
+          } catch (e) {
+              console.error('error to submit deposit to table: ')
+              console.error(e)
+              console.error('sleeping for 1 min')
+              await sleep(60000);
+              continue;
+          }
+        }
+
+        while ( ERC_TOKEN_DEPOSIT && fs.existsSync(`./assetHistory/deposit_${TIME_THRESHOLD}`)) {
+            try {
+                loadJsonToBigquery(`./assetHistory/deposit_${TIME_THRESHOLD}`, 'deposit')
+                console.log('deposit updated')
+                break
+            } catch (e) {
+                console.error('error to submit deposit to table: ')
+                console.error(e)
+                console.error('sleeping for 1 min')
+                await sleep(60000);
+                continue;
+            }
+        }
+
+        while ( ERC_TOKEN_WITHDRAW && fs.existsSync(`./assetHistory/withdraw_${TIME_THRESHOLD}`)) {
+          try {
+              loadJsonToBigquery(`./assetHistory/withdraw_${TIME_THRESHOLD}`, 'withdrawl')
+              console.log('submit updated')
+              break
+          } catch (e) {
+              console.error('error to submit to table: ')
+              console.error(e)
+              console.error('sleeping for 1 min')
+              await sleep(60000);
+              continue;
+          }
+        }
+
+        while (true) {
+          try {
+            await getAccountAmountFromNear()
+            console.log('near amount updated')
+            break
+          } catch (e) {
+            console.error('error to get near amount: ')
+            console.error(e)
+            console.error('retrying in 1 min')
+            await sleep(60000);
+            continue;
+        }
+        }
+
+        await sleep(12*60*60000);
+  }
+}
+
+async function getERCtokenAsset() {
+
+  let ERCtokenDeposit, ERCtokenWithdrawl, ERCtokenAsset
+
+  let response = await fetch(`https://api.etherscan.io/api?module=account&action=tokentx&address=${ETH_ADDRESS}&startblock=0&endblock=999999999&sort=asc&apikey=${API_KEY}`, {
+    headers: {
+      Accept: "application/json"
+    }
+  })
+
+  if (response.ok) {
+    let res = await response.json()
+
+    res = res.result.filter((tx) => Number(tx.timeStamp) > TIME_THRESHOLD)
+    let deposit = res.filter((tx) => tx.to === ETH_ADDRESS)
+    let withdrawl = res.filter((tx) => tx.from === ETH_ADDRESS)
+
+    if(res.length > 0) {
+
+      ERCtokenAsset = getAmountList(res)
+
+      if(deposit.length > 0) {
+        ERCtokenDeposit = getAmountList(deposit)
+      }
+      if(withdrawl.length > 0) {
+        ERCtokenWithdrawl = getAmountList(withdrawl)
+      }
+
+      TIME_THRESHOLD = Number(res[res.length -1].timeStamp)
+    }
+  }
+
+  if (ERCtokenAsset) {
+    ERCtokenAsset = await getPrice(ERCtokenAsset)
+  }
+  
+  if (ERCtokenDeposit) {
+    ERCtokenDeposit = await getPrice(ERCtokenDeposit)
+  }
+
+  if (ERCtokenWithdrawl) {
+    ERCtokenWithdrawl = await getPrice(ERCtokenWithdrawl)
+  }
+
+
+  ERC_TOKEN_ASSET = ERCtokenAsset ? ERCtokenAsset.map(JSON.stringify).join('\n') : null
+  ERC_TOKEN_DEPOSIT = ERCtokenDeposit ? ERCtokenDeposit.map(JSON.stringify).join('\n') : null
+  ERC_TOKEN_WITHDRAW = ERCtokenWithdrawl ? ERCtokenWithdrawl.map(JSON.stringify).join('\n') : null
+}
+
+async function getPriceFromCoingecko(token, date) {
+
+  let response = await fetch(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`, {
+    headers: {
+      Accept: "application/json"
+    }
+  })
+  if (response.ok) {
+    let res = await response.json()
+    return res.market_data.current_price.usd.toFixed(5)
+  }
+  return 
+}
+
+const getAmountList = (array) =>(
+  array.map( (tx) =>{
+  let decimal = Math.pow(10, tx.tokenDecimal).toString()
+  return {
+    symbol: tx.tokenSymbol, 
+    amount: new BN(tx.value).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000,
+    timestamp: moment.unix(tx.timeStamp).format("YYYY-MM-DD HH:mm:ss"),
+    priceTime: moment.unix(tx.timeStamp).format('DD-MM-YYYY')
+  }}
+  )
+)
+
+const getPrice = async (array) => {
+  for (let i=0; i<array.length;i++) {
+    let price = await getPriceFromCoingecko(tokenMap.get(array[i].symbol), array[i].priceTime)
+    array[i] = {...array[i], price}
+  }
+  return array
+}
+
+// near account amount
+
+const nearRpcUrl='https://rpc.mainnet.internal.near.org'
+
+const nearRpc = new nearApi.providers.JsonRpcProvider(nearRpcUrl)
+
+nearRpc.callViewMethod = async function (contractName, methodName, args) {
+  const account = new nearApi.Account({ provider: this });
+  return await account.viewFunction(contractName, methodName, args);
+};
+
+async function getAccountAmountFromNear() {
+  let accountIdList = ERCtokenList.map((token) => ({name:token.name, }))
+  for(let i=0; i<ERCtokenList.length; i++) {
+    accountIdList[i] = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList[i].address.slice(2)})
+  }
+  console.log(accountIdList)
+}
+
 
 main() 

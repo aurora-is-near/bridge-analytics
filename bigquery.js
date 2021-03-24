@@ -5,17 +5,15 @@ const {BigQuery} = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 
 const datasetId = 'bridge_erc20_token'
-const tableId = 'total_supply'
-const priceTableId = 'price'
 
-async function loadJsonToBigquerySupply(file) {
+async function loadJsonToBigquery(file, table) {
   const metadata = {
     sourceFormat: 'NEWLINE_DELIMITED_JSON',
     location: 'US',
   };
   const [job] = await bigquery
     .dataset(datasetId)
-    .table(tableId)
+    .table(table)
     .load(file, metadata)
 
   console.log(`Job ${job.id} completed.`)
@@ -27,24 +25,5 @@ async function loadJsonToBigquerySupply(file) {
 
 }
 
-async function loadJsonToBigqueryPrice(file) {
-  const metadata = {
-    sourceFormat: 'NEWLINE_DELIMITED_JSON',
-    location: 'US',
-  };
-  const [job] = await bigquery
-    .dataset(datasetId)
-    .table(priceTableId)
-    .load(file, metadata)
 
-  console.log(`Job ${job.id} completed.`)
-
-  const errors = job.status.errors;
-  if (errors && errors.length > 0) {
-    throw errors;
-  }
-
-}
-
-exports.loadJsonToBigquerySupply = loadJsonToBigquerySupply
-exports.loadJsonToBigqueryPrice = loadJsonToBigqueryPrice
+exports.loadJsonToBigquery = loadJsonToBigquery
