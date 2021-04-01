@@ -80,7 +80,7 @@ const storeData = (data, path) => {
 }
 
 async function main() {
-  console.log('update every 12 hour')
+  console.log('update every 3 hour')
   while (true) {
         while (true) {
             try {
@@ -172,7 +172,7 @@ async function main() {
           }
       }
 
-        await sleep(12*60*60000);
+        await sleep(3*60*60000);
   }
 }
 
