@@ -7,57 +7,9 @@ const nearApi = require('near-api-js')
 
 const { loadJsonToBigquery } = require('./bigquery')
 
-const ERCtokenList = [
-    { name: "USDT",  address: "0xdac17f958d2ee523a2206206994597c13d831ec7", decimals: 6},
-    { name: "UNI",   address: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984", decimals: 18 },
-    { name: "LINK",  address: "0x514910771af9ca656af840dff83e8264ecf986ca", decimals: 18 },
-    { name: "USDC",  address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", decimals: 6  }, 
-    { name: "WBTC",  address: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599", decimals: 8  }, 
-    { name: "AAVE",  address: "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9", decimals: 18 },
-    { name: "CRO",   address: "0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b", decimals: 8  }, 
-    { name: "FTT",   address: "0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9", decimals: 18 }, 
-    { name: "BUSD",  address: "0x4fabb145d64652a948d72533023f6e7a623c7c53", decimals: 18 }, 
-    { name: "HT",    address: "0x6f259637dcd74c767781e37bc6133cd6a68aa161", decimals: 18 }, 
-    { name: "DAI",   address: "0x6b175474e89094c44da98b954eedeac495271d0f", decimals: 18 },
-    { name: "SUSHI", address: "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2", decimals: 18 }, 
-    { name: "SNX",   address: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f", decimals: 18 },
-    { name: "GRT",   address: "0xc944e90c64b2c07662a292be6244bdf05cda44a7", decimals: 18 }, 
-    { name: "MKR",   address: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2", decimals: 18 }, 
-    { name: "COMP",  address: "0xc00e94cb662c3520282e6f5717214004a7f26888", decimals: 18 },
-    { name: "YFI",   address: "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e", decimals: 18 },
-    { name: "WETH",  address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", decimals: 18 }, 
-    { name: "HBTC",  address: "0x0316eb71485b0ab14103307bf65a021042c6d380", decimals: 18 }, 
-    { name: "1INCH", address: "0x111111111117dc0aa78b770fa6a738034120c302", decimals: 18 }, 
-    { name: "MATIC", address: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", decimals: 18 },
-    { name: "SNT",   address: "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E", decimals: 18 },
-    { name: "ALCX",  address: "0xdbdb4d16eda451d0503b854cf79d55697f90c8df", decimals: 18 }
-]
-
-const tokenMap = new Map([
-    ["USDT",  "tether"],
-    ["UNI",   "unicorn-token"],
-    ["LINK",  "link"],
-    ["USDC",  "usd-coin"], 
-    ["WBTC",  "wrapped-bitcoin"], 
-    ["AAVE",  "aave"],
-    ["CRO",   "crypto-com-chain"], 
-    ["FTT",   "freetip"], 
-    ["BUSD",  "binance-usd"], 
-    ["HT",    "huobi-token"], 
-    ["DAI",   "dai"],
-    ["SUSHI", "sushi"], 
-    ["SNX",   "havven"],
-    ["GRT",   "the-graph"], 
-    ["MKR",   "maker"], 
-    ["COMP",  "compound-coin"],
-    ["YFI",   "yearn-finance"],
-    ["WETH",  "weth"], 
-    ["HBTC",  "huobi-btc"], 
-    ["1INCH", "1inch"],
-    ["SNT",   "status"],
-    ["MATIC", "matic-network"],
-    ["ALCX",  "alchemix"] 
-])
+let ERCtokenList = new Map()
+let tokenMapData = require('./tokenMap')
+const tokenMap = tokenMapData.list
 
 const ETH_ADDRESS = '0x23ddd3e3692d1861ed57ede224608875809e127f'
 const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
@@ -194,6 +146,7 @@ async function getERCtokenAsset() {
     let withdrawl = res.filter((tx) => tx.from === ETH_ADDRESS)
 
     if(res.length > 0) {
+      aggregateTokenMap(res)
 
       ERCtokenAsset = getAmountList(res)
 
@@ -226,6 +179,21 @@ async function getERCtokenAsset() {
   ERC_TOKEN_WITHDRAW = ERCtokenWithdrawl ? ERCtokenWithdrawl.map(JSON.stringify).join('\n') : null
 }
 
+async function getTokenMap() {
+  let res = await fetch(`https://api.coingecko.com/api/v3/coins/list`, {
+    headers: {
+      Accept: "application/json"
+    }
+  })
+  if(res.ok) {
+    let obj = {}
+    let list = await res.json()
+    obj.list = list
+    let json = JSON.stringify(obj)
+    storeData(json, 'tokenMap.json')
+  }
+}
+
 async function getPriceFromCoingecko(token, date) {
 
   let response = await fetch(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`, {
@@ -254,12 +222,21 @@ const getAmountList = (array) =>(
 
 const getPrice = async (array) => {
   for (let i=0; i<array.length;i++) {
-    let price = await getPriceFromCoingecko(tokenMap.get(array[i].symbol), array[i].priceTime)
+    let token = tokenMap.filter((token) => token.symbol === array[i].symbol.toLowerCase())
+    let id = token[0].id
+    let price = await getPriceFromCoingecko(id, array[i].priceTime)
     array[i] = {...array[i], price}
   }
   return array
 }
 
+const aggregateTokenMap = (array) => {
+  for(let i=0; i<array.length;i++) {
+    if(!ERCtokenList.get(array[i].tokenSymbol)){
+      ERCtokenList.set(array[i].tokenSymbol, { symbol: array[i].tokenSymbol,  address: array[i].contractAddress, decimals: array[i].tokenDecimal})
+    }
+  }
+}
 // near account amount
 
 const nearRpcUrl='https://rpc.mainnet.internal.near.org'
@@ -271,14 +248,16 @@ nearRpc.callViewMethod = async function (contractName, methodName, args) {
 };
 
 async function getAccountAmountFromNear() {
-  let accountIdList = ERCtokenList.map((token) => ({
-                                                    symbol:token.name, 
-                                                    balance: 0,
-                                                    timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}))
+  let accountIdList = []
+  const getList = (value) => {
+    accountIdList.push({symbol:value.symbol, balance: 0,timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")})
+  } 
+  ERCtokenList.forEach(getList);
+
   for(let i=0; i<accountIdList.length; i++) {
-    let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList[i].address.slice(2)})
+    let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList.get(accountIdList[i].symbol).address.slice(2)})
     let balance = await nearRpc.callViewMethod(accountId, 'ft_total_supply', {})
-    let decimal = Math.pow(10, ERCtokenList[i].decimals).toString()
+    let decimal = Math.pow(10, ERCtokenList.get(accountIdList[i].symbol).decimals).toString()
     balance = new BN(balance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     accountIdList[i].balance = balance
   }

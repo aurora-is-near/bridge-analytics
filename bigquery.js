@@ -33,5 +33,4 @@ async function loadJsonToBigquery(file, table) {
   }
 }
 
-
 exports.loadJsonToBigquery = loadJsonToBigquery
