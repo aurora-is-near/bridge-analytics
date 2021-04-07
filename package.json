@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/bigquery": "^5.5.0",
+    "autobahn": "^20.9.2",
     "bn.js": "^5.2.0",
     "moment": "^2.29.1",
     "near-api-js": "^0.39.0",

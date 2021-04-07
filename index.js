@@ -179,21 +179,6 @@ async function getERCtokenAsset() {
   ERC_TOKEN_WITHDRAW = ERCtokenWithdrawl ? ERCtokenWithdrawl.map(JSON.stringify).join('\n') : null
 }
 
-async function getTokenMap() {
-  let res = await fetch(`https://api.coingecko.com/api/v3/coins/list`, {
-    headers: {
-      Accept: "application/json"
-    }
-  })
-  if(res.ok) {
-    let obj = {}
-    let list = await res.json()
-    obj.list = list
-    let json = JSON.stringify(obj)
-    storeData(json, 'tokenMap.json')
-  }
-}
-
 async function getPriceFromCoingecko(token, date) {
 
   let response = await fetch(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`, {
@@ -267,5 +252,20 @@ async function getAccountAmountFromNear() {
   storeData(file,path.join(__dirname, 'assetHistory', 'near_balance'))
 }
 
+//load price 
+async function getTokenMap() {
+  let res = await fetch(`https://api.coingecko.com/api/v3/coins/list`, {
+    headers: {
+      Accept: "application/json"
+    }
+  })
+  if(res.ok) {
+    let obj = {}
+    let list = await res.json()
+    obj.list = list
+    let json = JSON.stringify(obj)
+    storeData(json, 'tokenMap.json')
+  }
+}
 
 main() 

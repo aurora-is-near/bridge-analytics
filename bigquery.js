@@ -33,4 +33,33 @@ async function loadJsonToBigquery(file, table) {
   }
 }
 
+const holderDatasetId = 'bridge_token_holder'
+
+async function loadJsonToBigquery_holder(file, table) {
+  const metadata = {
+    sourceFormat: 'NEWLINE_DELIMITED_JSON',
+    location: 'US',
+  };
+  const [job] = await bigquery
+    .dataset(holderDatasetId)
+    .table(table)
+    .load(file, metadata)
+
+  console.log(`Job ${job.id} completed.`)
+
+  const errors = job.status.errors;
+  if (errors && errors.length > 0) {
+    throw errors;
+  } else {
+    fs.unlink(file,(err) => {
+      if (err) {
+          throw err;
+      }
+  
+      console.log("File is deleted.");
+  })
+  }
+}
+
 exports.loadJsonToBigquery = loadJsonToBigquery
+exports.loadJsonToBigquery_holder = loadJsonToBigquery_holder

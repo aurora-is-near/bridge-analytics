@@ -1,0 +1,17 @@
+{"symbol":"DAI","address":"0x6b175474e89094c44da98b954eedeac495271d0f","decimals":"18"}
+{"symbol":"USDT","address":"0xdac17f958d2ee523a2206206994597c13d831ec7","decimals":"6"}
+{"symbol":"USDC","address":"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48","decimals":"6"}
+{"symbol":"WETH","address":"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2","decimals":"18"}
+{"symbol":"SNT","address":"0x744d70fdbe2ba4cf95131626614a1763df805b9e","decimals":"18"}
+{"symbol":"MATIC","address":"0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0","decimals":"18"}
+{"symbol":"ALCX","address":"0xdbdb4d16eda451d0503b854cf79d55697f90c8df","decimals":"18"}
+{"symbol":"UNI","address":"0x1f9840a85d5af5bf1d1762f925bdaddc4201f984","decimals":"18"}
+{"symbol":"AAVE","address":"0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9","decimals":"18"}
+{"symbol":"COMP","address":"0xc00e94cb662c3520282e6f5717214004a7f26888","decimals":"18"}
+{"symbol":"CRO","address":"0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b","decimals":"8"}
+{"symbol":"WBTC","address":"0x2260fac5e5542a773aa44fbcfedf7c193bc2c599","decimals":"8"}
+{"symbol":"TUSD","address":"0x0000000000085d4780b73119b644ae5ecd22b376","decimals":"18"}
+{"symbol":"HT","address":"0x6f259637dcd74c767781e37bc6133cd6a68aa161","decimals":"18"}
+{"symbol":"1INCH","address":"0x111111111117dc0aa78b770fa6a738034120c302","decimals":"18"}
+{"symbol":"BAL","address":"0xba100000625a3754423978a60c9317c58a424e3d","decimals":"18"}
+{"symbol":"AMP","address":"0xff20817765cb7f73d4bde2e66e067e58d11095c2","decimals":"18"}
