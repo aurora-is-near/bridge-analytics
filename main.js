@@ -10,6 +10,7 @@ const {StatsApi} = require('./api/stats')
 
 let ERCtokenList = new Map()
 let TIME_THRESHOLD = 0
+let FILE_READY = false
 
 const ETH_ADDRESS = '0x23ddd3e3692d1861ed57ede224608875809e127f'
 const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
@@ -46,7 +47,7 @@ async function main() {
         }
         }
 
-        while (fs.existsSync('./holderHistory/DAI')) {
+        while (FILE_READY) {
           try {
               loadTokenTables()
               break
@@ -126,6 +127,8 @@ async function getTokenHoldersDist() {
     let file = holderList[i].map(JSON.stringify).join('\n')
     storeData(file, path.join(__dirname, 'holderHistory', tokenList[i].symbol))
   }
+
+  FILE_READY = true
 }
 
 // load tables
