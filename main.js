@@ -5,6 +5,7 @@ const moment = require('moment')
 const BN = require('bn.js')
 const nearApi = require('near-api-js')
 
+
 const { loadJsonToBigquery_holder } = require('./bigquery')
 const {StatsApi} = require('./api/stats')
 
@@ -119,6 +120,8 @@ async function getTokenHoldersDist() {
     for(let j=0; j< holderList[i].length;j++) {
       let tokenHolderBalance = await nearRpc.callViewMethod(tokenList[i].address.slice(2) + '.factory.bridge.near', 'ft_balance_of', {account_id: holderList[i][j].holder})
       let decimal = Math.pow(10, tokenList[i].decimals).toString()
+      holderList[i][j].symbol = tokenList[i].symbol
+      holderList[i][j].timestamp =  moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
       holderList[i][j].balance = new BN(tokenHolderBalance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     }
   }
