@@ -198,7 +198,7 @@ const getAmountList = (array) =>(
   let decimal = Math.pow(10, tx.tokenDecimal).toString()
   return {
     symbol: tx.tokenSymbol, 
-    amount: new BN(tx.value).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000,
+    amount: new BN(tx.value).mul(new BN('1000000000')).div(new BN(decimal)).toNumber()/1000000000,
     timestamp: moment.unix(tx.timeStamp).format("YYYY-MM-DD HH:mm:ss"),
     priceTime: moment.unix(tx.timeStamp).format('DD-MM-YYYY')
   }}
