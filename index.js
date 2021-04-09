@@ -210,7 +210,7 @@ const getPrice = async (array) => {
     let token = tokenMap.filter((token) => token.symbol === array[i].symbol.toLowerCase())
     let id = token[0].id
     let price = await getPriceFromCoingecko(id, array[i].priceTime)
-    array[i] = {...array[i], price}
+    array[i] = {...array[i], price: Number(price)}
   }
   return array
 }
