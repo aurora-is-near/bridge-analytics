@@ -143,6 +143,7 @@ async function getTokenHoldersDist() {
 // load tables
  const loadTokenTables = () => {
    ERCtokenList.forEach((value) => loadJsonToBigquery_holder(`./holderHistory/${value.symbol}`, value.symbol))
+   loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
  }
 
 main() 
