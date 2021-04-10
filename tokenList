@@ -16,3 +16,6 @@
 {"symbol":"BAL","address":"0xba100000625a3754423978a60c9317c58a424e3d","decimals":"18"}
 {"symbol":"AMP","address":"0xff20817765cb7f73d4bde2e66e067e58d11095c2","decimals":"18"}
 {"symbol":"YFI","address":"0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e","decimals":"18"}
+{"symbol":"DSGN","address":"0x537a9095b78517597b5f2058edcd6e1978095909","decimals":"4"}
+{"symbol":"LINK","address":"0x514910771af9ca656af840dff83e8264ecf986ca","decimals":"18"}
+{"symbol":"SUSHI","address":"0x6b3595068778dd592e39a122f4f5a5cf09c90fe2","decimals":"18"}

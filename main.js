@@ -126,10 +126,16 @@ async function getTokenHoldersDist() {
     }
   }
   
+  let ERC20tokenHolder = []
+  
   for(let i=0; i<holderList.length;i++) {
     let file = holderList[i].map(JSON.stringify).join('\n')
     storeData(file, path.join(__dirname, 'holderHistory', tokenList[i].symbol))
+    ERC20tokenHolder = ERC20tokenHolder.concat(holderList[i])
   }
+
+  let ercFile = ERC20tokenHolder.map(JSON.stringify).join('\n')
+  storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
 
   FILE_READY = true
 }
