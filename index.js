@@ -114,7 +114,7 @@ async function getERCtokenAsset() {
     let res = await response.json()
 
     res = res.result.filter((tx) => Number(tx.timeStamp) > TIME_THRESHOLD)
-    console.log(res.length)
+    console.log("result length", res.length)
     let deposit = res.filter((tx) => tx.to === ETH_ADDRESS)
     let withdrawl = res.filter((tx) => tx.from === ETH_ADDRESS)
 
