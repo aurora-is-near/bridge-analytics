@@ -7,7 +7,6 @@ const nearApi = require('near-api-js')
 
 
 const { loadJsonToBigquery_holder, loadJsonToBigquery } = require('./bigquery')
-const {StatsApi} = require('./api/stats')
 const {queryBridgeTokenHolders} = require('./indexer/index')
 
 let ERCtokenList = new Map()
@@ -154,7 +153,8 @@ async function getTokenHoldersDist() {
     }
   }
 
-  let ercFile = holderList.map(JSON.stringify).join('\n')
+  console.log(holderList)
+  let ercFile = holderList.map((l)=>l.map(JSON.stringify).join('\n'))
   storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
 
   FILE_READY = true
