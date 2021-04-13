@@ -6,8 +6,9 @@ const BN = require('bn.js')
 const nearApi = require('near-api-js')
 
 
-const { loadJsonToBigquery_holder } = require('./bigquery')
+const { loadJsonToBigquery_holder, loadJsonToBigquery } = require('./bigquery')
 const {StatsApi} = require('./api/stats')
+const {queryBridgeTokenHolders} = require('./indexer/index')
 
 let ERCtokenList = new Map()
 let TIME_THRESHOLD = 0
@@ -59,8 +60,35 @@ async function main() {
               await sleep(60000);
               continue;
           }
-      }
+        }
 
+        while (true) {
+          try {
+            await getAccountAmountFromNear()
+            console.log('near amount updated')
+            break
+          } catch (e) {
+            console.error('error to get near amount: ')
+            console.error(e)
+            console.error('retrying in 1 min')
+            await sleep(60000);
+            continue;
+        }
+        }
+
+        while (fs.existsSync('./assetHistory/near_balance')) {
+          try {
+              loadJsonToBigquery('./assetHistory/near_balance', 'near_balance')
+              break
+          } catch (e) {
+              console.error('error to submit to volume table: ')
+              console.error(e)
+              console.error('sleeping for 1 min')
+              await sleep(60000);
+              continue;
+          }
+        }
+        
         await sleep(3*60*60000);
   }
 }
@@ -113,7 +141,7 @@ async function getTokenHoldersDist() {
   let holderList = Array(tokenList.length)
   for(let i=0;i<tokenList.length;i++) {
     let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: tokenList[i].address.slice(2)})
-    holderList[i] = await new StatsApi().getTokenHolders(accountId)
+    holderList[i] = await queryBridgeTokenHolders(accountId)
   }
 
   for(let i=0; i< holderList.length;i++) {
@@ -125,24 +153,35 @@ async function getTokenHoldersDist() {
       holderList[i][j].balance = new BN(tokenHolderBalance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     }
   }
-  
-  let ERC20tokenHolder = []
-  
-  for(let i=0; i<holderList.length;i++) {
-    let file = holderList[i].map(JSON.stringify).join('\n')
-    storeData(file, path.join(__dirname, 'holderHistory', tokenList[i].symbol))
-    ERC20tokenHolder = ERC20tokenHolder.concat(holderList[i])
-  }
 
-  let ercFile = ERC20tokenHolder.map(JSON.stringify).join('\n')
+  let ercFile = holderList.map(JSON.stringify).join('\n')
   storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
 
   FILE_READY = true
 }
 
+async function getAccountAmountFromNear() {
+  let accountIdList = []
+  const getList = (value) => {
+    accountIdList.push({symbol:value.symbol, balance: 0,timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")})
+  } 
+  ERCtokenList.forEach(getList);
+
+  for(let i=0; i<accountIdList.length; i++) {
+    let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList.get(accountIdList[i].symbol).address.slice(2)})
+    let balance = await nearRpc.callViewMethod(accountId, 'ft_total_supply', {})
+    let decimal = Math.pow(10, ERCtokenList.get(accountIdList[i].symbol).decimals).toString()
+    balance = new BN(balance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
+    accountIdList[i].balance = balance
+  }
+
+  let file = accountIdList.map(JSON.stringify).join('\n')
+
+  storeData(file,path.join(__dirname, 'assetHistory', 'near_balance'))
+}
+
 // load tables
  const loadTokenTables = () => {
-   ERCtokenList.forEach((value) => loadJsonToBigquery_holder(`./holderHistory/${value.symbol}`, value.symbol))
    loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
  }
 

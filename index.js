@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const moment = require('moment')
 const BN = require('bn.js')
-const nearApi = require('near-api-js')
 
 const { loadJsonToBigquery } = require('./bigquery')
 
@@ -97,33 +96,6 @@ async function main() {
           }
         }
 
-        while (true) {
-          try {
-            await getAccountAmountFromNear()
-            console.log('near amount updated')
-            break
-          } catch (e) {
-            console.error('error to get near amount: ')
-            console.error(e)
-            console.error('retrying in 1 min')
-            await sleep(60000);
-            continue;
-        }
-        }
-
-        while (fs.existsSync('./assetHistory/near_balance')) {
-          try {
-              loadJsonToBigquery('./assetHistory/near_balance', 'near_balance')
-              break
-          } catch (e) {
-              console.error('error to submit to volume table: ')
-              console.error(e)
-              console.error('sleeping for 1 min')
-              await sleep(60000);
-              continue;
-          }
-      }
-
         await sleep(3*60*60000);
   }
 }
@@ -142,6 +114,7 @@ async function getERCtokenAsset() {
     let res = await response.json()
 
     res = res.result.filter((tx) => Number(tx.timeStamp) > TIME_THRESHOLD)
+    console.log(res.length)
     let deposit = res.filter((tx) => tx.to === ETH_ADDRESS)
     let withdrawl = res.filter((tx) => tx.from === ETH_ADDRESS)
 
@@ -208,8 +181,14 @@ const getAmountList = (array) =>(
 const getPrice = async (array) => {
   for (let i=0; i<array.length;i++) {
     let token = tokenMap.filter((token) => token.symbol === array[i].symbol.toLowerCase())
-    let id = token[0].id
-    let price = await getPriceFromCoingecko(id, array[i].priceTime)
+    let price
+    if(token.length>0) {
+      let id = token[0].id
+      price = await getPriceFromCoingecko(id, array[i].priceTime)
+    } else {
+      console.log(array[i].symbol)
+      price = 0
+    }
     array[i] = {...array[i], price: Number(price)}
   }
   return array
@@ -221,35 +200,6 @@ const aggregateTokenMap = (array) => {
       ERCtokenList.set(array[i].tokenSymbol, { symbol: array[i].tokenSymbol,  address: array[i].contractAddress, decimals: array[i].tokenDecimal})
     }
   }
-}
-// near account amount
-
-const nearRpcUrl='https://rpc.mainnet.internal.near.org'
-const nearRpc = new nearApi.providers.JsonRpcProvider(nearRpcUrl)
-
-nearRpc.callViewMethod = async function (contractName, methodName, args) {
-  const account = new nearApi.Account({ provider: this });
-  return await account.viewFunction(contractName, methodName, args);
-};
-
-async function getAccountAmountFromNear() {
-  let accountIdList = []
-  const getList = (value) => {
-    accountIdList.push({symbol:value.symbol, balance: 0,timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")})
-  } 
-  ERCtokenList.forEach(getList);
-
-  for(let i=0; i<accountIdList.length; i++) {
-    let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList.get(accountIdList[i].symbol).address.slice(2)})
-    let balance = await nearRpc.callViewMethod(accountId, 'ft_total_supply', {})
-    let decimal = Math.pow(10, ERCtokenList.get(accountIdList[i].symbol).decimals).toString()
-    balance = new BN(balance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
-    accountIdList[i].balance = balance
-  }
-
-  let file = accountIdList.map(JSON.stringify).join('\n')
-
-  storeData(file,path.join(__dirname, 'assetHistory', 'near_balance'))
 }
 
 //load price 
