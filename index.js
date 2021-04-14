@@ -161,7 +161,7 @@ async function getPriceFromCoingecko(token, date) {
   })
   if (response.ok) {
     let res = await response.json()
-    if(res.market_data.current_price){
+    if(res.market_data){
       return res.market_data.current_price.usd.toFixed(5)
     }else {
       return null
