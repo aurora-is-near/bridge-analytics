@@ -29,7 +29,7 @@ const storeData = (data, path) => {
 }
 
 async function main() {
-  console.log('update every 3 hour')
+  console.log('near update every 3 hour')
   while (true) {
         while (true) {
           try {
