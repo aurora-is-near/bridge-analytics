@@ -173,7 +173,9 @@ async function getAccountAmountFromNear() {
 
   for(let i=0; i<accountIdList.length; i++) {
     let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: ERCtokenList.get(accountIdList[i].symbol).address.slice(2)})
+    console.log(accountId)
     let balance = await nearRpc.callViewMethod(accountId, 'ft_total_supply', {})
+    console.log(balance)
     let decimal = Math.pow(10, ERCtokenList.get(accountIdList[i].symbol).decimals).toString()
     balance = new BN(balance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     accountIdList[i].balance = balance
