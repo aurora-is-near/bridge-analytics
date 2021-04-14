@@ -150,9 +150,12 @@ async function getPriceFromCoingecko(token, date) {
   })
   if (response.ok) {
     let res = await response.json()
+    
     if(res.market_data){
       return res.market_data.current_price.usd.toFixed(5)
     }else {
+      console.log(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`)
+      console.log(res)
       return null
     }
     
