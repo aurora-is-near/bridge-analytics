@@ -1,6 +1,8 @@
-let fetch = require('node-fetch')
+const fetch = require('node-fetch')
 const pTh = require('p-throttle')
-fetch = pTh(fetch, 100, 60*1000)
+const throttle = pTh({limit: 100, interval: 60*1000})
+const tFetch = throttle(fetch)
+
 const fs = require('fs')
 const path = require('path')
 const moment = require('moment')
@@ -106,7 +108,7 @@ async function getERCtokenAsset() {
 
   let ERCtokenDeposit, ERCtokenWithdrawl, ERCtokenAsset
 
-  let response = await fetch(`https://api.etherscan.io/api?module=account&action=tokentx&address=${ETH_ADDRESS}&startblock=0&endblock=999999999&sort=asc&apikey=${API_KEY}`, {
+  let response = await tFetch(`https://api.etherscan.io/api?module=account&action=tokentx&address=${ETH_ADDRESS}&startblock=0&endblock=999999999&sort=asc&apikey=${API_KEY}`, {
     headers: {
       Accept: "application/json"
     }
@@ -141,7 +143,7 @@ async function getERCtokenAsset() {
 
 async function getPriceFromCoingecko(token, date) {
 
-  let response = await fetch(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`, {
+  let response = await tFetch(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`, {
     headers: {
       Accept: "application/json"
     }
