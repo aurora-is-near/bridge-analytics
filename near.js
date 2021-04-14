@@ -136,7 +136,7 @@ async function getTokenHoldersDist() {
   let tokenList = []
   ERCtokenList.forEach((value) => tokenList.push(value))
   let file = tokenList.map(JSON.stringify).join('\n')
-  storeData(file, 'tokenList')
+  storeData(file, 'tokenList.json')
   console.log('store token list')
 
   let holderList = Array(tokenList.length)

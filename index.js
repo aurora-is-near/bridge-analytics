@@ -20,7 +20,7 @@ const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
 let ERC_TOKEN_ASSET = null
 let ERC_TOKEN_DEPOSIT = null
 let ERC_TOKEN_WITHDRAW = null
-let TIME_THRESHOLD = 0
+let TIME_THRESHOLD = 1618441854
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -132,10 +132,12 @@ async function getERCtokenAsset() {
   if (ERCtokenAsset) {
     ERCtokenAsset = await getPrice(ERCtokenAsset)
   }
-
-  ERCtokenDeposit = ERCtokenAsset.filter((tx) => tx.action === 'deposit')  
-  ERCtokenWithdrawl = ERCtokenAsset.filter((tx) => tx.action === 'withdraw')
-
+  
+  if(ERCtokenAsset) {
+    ERCtokenDeposit = ERCtokenAsset.filter((tx) => tx.action === 'deposit')  
+    ERCtokenWithdrawl = ERCtokenAsset.filter((tx) => tx.action === 'withdraw')
+  }
+  
   ERC_TOKEN_ASSET = ERCtokenAsset ? ERCtokenAsset.map(JSON.stringify).join('\n') : null
   ERC_TOKEN_DEPOSIT = ERCtokenDeposit ? ERCtokenDeposit.map(JSON.stringify).join('\n') : null
   ERC_TOKEN_WITHDRAW = ERCtokenWithdrawl ? ERCtokenWithdrawl.map(JSON.stringify).join('\n') : null
@@ -183,6 +185,7 @@ const getPrice = async (array) => {
     if(token.length>0) {
       let id = token[0].id
       price = await getPriceFromCoingecko(id, array[i].priceTime)
+      console.log(id, price)
     } else {
       console.log(array[i].symbol)
       price = 0
