@@ -1,4 +1,6 @@
-const fetch = require('node-fetch')
+let fetch = require('node-fetch')
+const pTh = require('p-throttle')
+fetch = pTh(fetch, 100, 60*1000)
 const fs = require('fs')
 const path = require('path')
 const moment = require('moment')
@@ -115,20 +117,11 @@ async function getERCtokenAsset() {
 
     res = res.result.filter((tx) => Number(tx.timeStamp) > TIME_THRESHOLD)
     console.log("result length", res.length)
-    let deposit = res.filter((tx) => tx.to === ETH_ADDRESS)
-    let withdrawl = res.filter((tx) => tx.from === ETH_ADDRESS)
 
     if(res.length > 0) {
       aggregateTokenMap(res)
 
       ERCtokenAsset = getAmountList(res)
-
-      if(deposit.length > 0) {
-        ERCtokenDeposit = getAmountList(deposit)
-      }
-      if(withdrawl.length > 0) {
-        ERCtokenWithdrawl = getAmountList(withdrawl)
-      }
 
       TIME_THRESHOLD = Number(res[res.length -1].timeStamp)
     }
@@ -137,15 +130,9 @@ async function getERCtokenAsset() {
   if (ERCtokenAsset) {
     ERCtokenAsset = await getPrice(ERCtokenAsset)
   }
-  
-  if (ERCtokenDeposit) {
-    ERCtokenDeposit = await getPrice(ERCtokenDeposit)
-  }
 
-  if (ERCtokenWithdrawl) {
-    ERCtokenWithdrawl = await getPrice(ERCtokenWithdrawl)
-  }
-
+  ERCtokenDeposit = ERCtokenAsset.filter((tx) => tx.action === 'deposit')  
+  ERCtokenWithdrawl = ERCtokenAsset.filter((tx) => tx.action === 'withdraw')
 
   ERC_TOKEN_ASSET = ERCtokenAsset ? ERCtokenAsset.map(JSON.stringify).join('\n') : null
   ERC_TOKEN_DEPOSIT = ERCtokenDeposit ? ERCtokenDeposit.map(JSON.stringify).join('\n') : null
@@ -178,7 +165,8 @@ const getAmountList = (array) =>(
     symbol: tx.tokenSymbol, 
     amount: new BN(tx.value).mul(new BN('1000000000')).div(new BN(decimal)).toNumber()/1000000000,
     timestamp: moment.unix(tx.timeStamp).format("YYYY-MM-DD HH:mm:ss"),
-    priceTime: moment.unix(tx.timeStamp).format('DD-MM-YYYY')
+    priceTime: moment.unix(tx.timeStamp).format('DD-MM-YYYY'),
+    action: tx.to === ETH_ADDRESS ? 'deposit': 'withdraw'
   }}
   )
 )
