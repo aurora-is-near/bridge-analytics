@@ -1,4 +1,4 @@
 node_modules
 assetHistory
 holderHistory
-tokenList
+./tokenList

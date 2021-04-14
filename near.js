@@ -106,8 +106,9 @@ async function getERCtokenAsset() {
 
     if(res.length > 0) {
       aggregateTokenMap(res)
-
+      console.log("get token map")
       TIME_THRESHOLD = Number(res[res.length -1].timeStamp)
+      console.log('current timestamp:', TIME_THRESHOLD)
     }
   }
 }
@@ -136,24 +137,27 @@ async function getTokenHoldersDist() {
   ERCtokenList.forEach((value) => tokenList.push(value))
   let file = tokenList.map(JSON.stringify).join('\n')
   storeData(file, 'tokenList')
+  console.log('store token list')
 
   let holderList = Array(tokenList.length)
   for(let i=0;i<tokenList.length;i++) {
     let accountId = await nearRpc.callViewMethod('factory.bridge.near', 'get_bridge_token_account_id', {address: tokenList[i].address.slice(2)})
+    console.log(accountId)
     holderList[i] = await queryBridgeTokenHolders(accountId)
   }
 
+  let timestamp = moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
   for(let i=0; i< holderList.length;i++) {
     for(let j=0; j< holderList[i].length;j++) {
       let tokenHolderBalance = await nearRpc.callViewMethod(tokenList[i].address.slice(2) + '.factory.bridge.near', 'ft_balance_of', {account_id: holderList[i][j].holder})
       let decimal = Math.pow(10, tokenList[i].decimals).toString()
       holderList[i][j].symbol = tokenList[i].symbol
-      holderList[i][j].timestamp =  moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+      holderList[i][j].timestamp =  timestamp
       holderList[i][j].balance = new BN(tokenHolderBalance).mul(new BN('10000')).div(new BN(decimal)).toNumber()/10000
     }
   }
 
-  console.log(holderList)
+  console.log('holder list finish')
   let ercFile = holderList.map((l)=>l.map(JSON.stringify).join('\n'))
   storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
 
