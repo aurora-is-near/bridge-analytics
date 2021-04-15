@@ -31,14 +31,14 @@ const queryBridgeMintTransactionAction = async (timestamp) => {
     pool.query(`SELECT
     receipts.receiver_account_id AS symbol_token,  
     action_receipt_actions.args ->> 'args_base64' AS serialized_amount, 
-    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000),
-    originated_from_transaction_hash 
+    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000) as timestamp,
+    originated_from_transaction_hash as transaction_hash
    FROM receipts
    JOIN action_receipt_actions ON receipts.receipt_id = action_receipt_actions.receipt_id 
    WHERE
      receipts.predecessor_account_id = 'factory.bridge.near'
      AND action_receipt_actions.args ->> 'method_name' = 'mint'
-     AND (receipts.included_in_block_timestamp/1000000000) > ${timestamp}
+     AND TO_TIMESTAMP(receipts.included_in_block_timestamp/1000000000) > '${timestamp}'
    ORDER BY included_in_block_timestamp DESC`, (error, results) => {
       if (error) {
         reject(error)
@@ -51,15 +51,15 @@ const queryBridgeMintTransactionAction = async (timestamp) => {
 const queryBridgeDepositTransaction = async (timestamp) => {
   return await new Promise(function(resolve, reject) {
     pool.query(`SELECT
-    receipts.predecessor_account_id,
-    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000),
-    receipts.originated_from_transaction_hash 
+    receipts.predecessor_account_id as account_id,
+    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000) as timestamp,
+    receipts.originated_from_transaction_hash as transaction_hash 
   FROM receipts
   JOIN action_receipt_actions ON receipts.receipt_id = action_receipt_actions.receipt_id 
   WHERE
     receipts.receiver_account_id = 'factory.bridge.near'
     AND action_receipt_actions.args ->> 'method_name' = 'deposit'
-    AND (receipts.included_in_block_timestamp/1000000000) > ${timestamp}
+    AND TO_TIMESTAMP(receipts.included_in_block_timestamp/1000000000) > '${timestamp}'
   ORDER BY included_in_block_timestamp DESC`, (error, results) => {
       if (error) {
         reject(error)
@@ -72,15 +72,15 @@ const queryBridgeDepositTransaction = async (timestamp) => {
 const queryBridgeFinishWithdrawTransaction = async (timestamp) => {
   return await new Promise(function(resolve, reject) {
     pool.query(`SELECT
-    receipts.predecessor_account_id,
-    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000),
-    receipts.originated_from_transaction_hash 
+    receipts.predecessor_account_id as account_id,
+    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000) as timestamp,
+    receipts.originated_from_transaction_hash as transaction_hash
    FROM receipts
    JOIN action_receipt_actions ON receipts.receipt_id = action_receipt_actions.receipt_id 
    WHERE
      receipts.receiver_account_id = 'factory.bridge.near'
      AND action_receipt_actions.args ->> 'method_name' = 'finish_withdraw'
-     AND (receipts.included_in_block_timestamp/1000000000) > ${timestamp}
+     AND TO_TIMESTAMP(receipts.included_in_block_timestamp/1000000000) > '${timestamp}'
    ORDER BY included_in_block_timestamp DESC`, (error, results) => {
       if (error) {
         reject(error)
@@ -93,16 +93,17 @@ const queryBridgeFinishWithdrawTransaction = async (timestamp) => {
 const queryBridgeWithdrawTransactionAction = async (timestamp) => {
   return await new Promise(function(resolve, reject) {
     pool.query(`SELECT
-    receipts.predecessor_account_id,
+    receipts.predecessor_account_id as predecessor,
     receipts.receiver_account_id as symbol_token,
     action_receipt_actions.args ->> 'args_base64' as serialized_amount, 
-    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000),
-    receipts.originated_from_transaction_hash 
+    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000) as timestamp,
+    receipts.originated_from_transaction_hash as transaction_hash,
+    action_receipt_actions.args ->> 'method_name' as method
   FROM receipts
   JOIN action_receipt_actions ON receipts.receipt_id = action_receipt_actions.receipt_id 
   WHERE receipts.receiver_account_id like '%factory.bridge.near'
   AND action_receipt_actions.args ->> 'method_name' IN ('withdraw', 'ft_transfer')
-  AND (receipts.included_in_block_timestamp/1000000000) > ${timestamp}
+  AND TO_TIMESTAMP(receipts.included_in_block_timestamp/1000000000) > '${timestamp}'
   ORDER BY included_in_block_timestamp DESC`, (error, results) => {
       if (error) {
         reject(error)
