@@ -135,7 +135,8 @@ nearRpc.callViewMethod = async function (contractName, methodName, args) {
 async function getTokenHoldersDist() {
   let tokenList = []
   ERCtokenList.forEach((value) => tokenList.push(value))
-  let file = tokenList.map(JSON.stringify).join('\n')
+  let token = {token: tokenList}
+  let file = JSON.stringify(token)
   storeData(file, 'tokenList.json')
   console.log('store token list')
 

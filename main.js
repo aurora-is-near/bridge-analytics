@@ -31,11 +31,11 @@ try {
 }
 
 async function main() {
-  console.log('update every 3 hour')
+  console.log('near deposit update every 3 hour')
   while (true) {
         while (true) {
             try {
-                await getERCtokenAsset()
+                await getNearDepositAndFinishWithDraw()
                 
                 console.log("near deposit and withdraw updated")
                 console.log("current timestamp: " + TIME_THRESHOLD)
@@ -54,8 +54,9 @@ async function main() {
 }
 
 async function getNearDepositAndFinishWithDraw() {
-  let deposit = await queryBridgeDepositTransaction()
-  let withdraw = await queryBridgeFinishWithdrawTransaction()
+  let deposit = await queryBridgeDepositTransaction('2021-01-11 00:00:00')
+  let withdraw = await queryBridgeFinishWithdrawTransaction('2021-01-11 00:00:00')
+  console.log(deposit)
 }
 
 
