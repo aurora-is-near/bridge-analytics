@@ -11,7 +11,6 @@ const {queryBridgeTokenHolders} = require('./indexer/index')
 
 let ERCtokenList = new Map()
 let TIME_THRESHOLD = 0
-let FILE_READY = false
 
 const ETH_ADDRESS = '0x23ddd3e3692d1861ed57ede224608875809e127f'
 const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
@@ -48,9 +47,10 @@ async function main() {
         }
         }
 
-        while (FILE_READY) {
+        while (fs.existsSync('./holderHistory/erc_20_token_holder')) {
           try {
               loadTokenTables()
+              console.log('submit holder to table')
               break
           } catch (e) {
               console.error('error to submit to holder table: ')
@@ -161,8 +161,6 @@ async function getTokenHoldersDist() {
   console.log('holder list finish')
   let ercFile = holderList.map((l)=>l.map(JSON.stringify).join('\n'))
   storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
-
-  FILE_READY = true
 }
 
 async function getAccountAmountFromNear() {
