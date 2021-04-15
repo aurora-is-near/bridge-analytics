@@ -49,7 +49,7 @@ async function main() {
 
         while (fs.existsSync('./holderHistory/erc_20_token_holder')) {
           try {
-              loadTokenTables()
+              loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
               console.log('submit holder to table')
               break
           } catch (e) {
@@ -184,10 +184,5 @@ async function getAccountAmountFromNear() {
 
   storeData(file,path.join(__dirname, 'assetHistory', 'near_balance'))
 }
-
-// load tables
- const loadTokenTables = () => {
-   loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
- }
 
 main() 
