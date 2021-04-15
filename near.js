@@ -61,7 +61,7 @@ async function main() {
           }
         }
 
-        while (true) {
+        while (false) {
           try {
             await getAccountAmountFromNear()
             console.log('near amount updated')
@@ -159,7 +159,7 @@ async function getTokenHoldersDist() {
   }
 
   console.log('holder list finish')
-  let ercFile = holderList.map((l)=>l.map(JSON.stringify).join('\n'))
+  let ercFile = holderList.map((l)=>l.map(JSON.stringify).join('\n')).join('\n')
   storeData(ercFile, path.join(__dirname, 'holderHistory', 'erc_20_token_holder'))
 }
 
