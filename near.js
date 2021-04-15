@@ -61,7 +61,7 @@ async function main() {
           }
         }
 
-        while (false) {
+        while (ture) {
           try {
             await getAccountAmountFromNear()
             console.log('near amount updated')
