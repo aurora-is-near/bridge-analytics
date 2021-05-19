@@ -20,7 +20,7 @@ const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
 let ERC_TOKEN_ASSET = null
 let ERC_TOKEN_DEPOSIT = null
 let ERC_TOKEN_WITHDRAW = null
-let TIME_THRESHOLD = 1619410620
+let TIME_THRESHOLD = 1621421827
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -63,6 +63,7 @@ async function main() {
 
         while ( ERC_TOKEN_ASSET && fs.existsSync(`./assetHistory/asset_${TIME_THRESHOLD}`)) {
           try {
+              console.log("start to upload asset")
               loadJsonToBigquery(`./assetHistory/asset_${TIME_THRESHOLD}`, 'asset')
               break
           } catch (e) {
@@ -76,6 +77,7 @@ async function main() {
 
         while ( ERC_TOKEN_DEPOSIT && fs.existsSync(`./assetHistory/deposit_${TIME_THRESHOLD}`)) {
             try {
+                console.log("start to upload deposit")
                 loadJsonToBigquery(`./assetHistory/deposit_${TIME_THRESHOLD}`, 'deposit')
                 break
             } catch (e) {
@@ -89,6 +91,7 @@ async function main() {
 
         while ( ERC_TOKEN_WITHDRAW && fs.existsSync(`./assetHistory/withdraw_${TIME_THRESHOLD}`)) {
           try {
+              console.log("start to upload withdrawl")
               loadJsonToBigquery(`./assetHistory/withdraw_${TIME_THRESHOLD}`, 'withdrawl')
               break
           } catch (e) {
