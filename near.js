@@ -50,8 +50,8 @@ async function main() {
 
         while (fs.existsSync('./holderHistory/erc_20_token_holder')) {
           try {
-              loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
               console.log('submit holder to table')
+              loadJsonToBigquery_holder('./holderHistory/erc_20_token_holder', 'erc_20_token_holder')
               break
           } catch (e) {
               console.error('error to submit to holder table: ')
@@ -78,6 +78,7 @@ async function main() {
 
         while (fs.existsSync('./assetHistory/near_balance')) {
           try {
+              console.log('submit near balance to table')
               loadJsonToBigquery('./assetHistory/near_balance', 'near_balance')
               break
           } catch (e) {
