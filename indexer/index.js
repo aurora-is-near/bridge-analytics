@@ -51,16 +51,16 @@ const queryBridgeMintTransactionAction = async (timestamp) => {
 const queryBridgeDepositTransaction = async (timestamp) => {
   return await new Promise(function(resolve, reject) {
     pool.query(`SELECT
-    receipts.predecessor_account_id as account_id,
-    TO_TIMESTAMP(receipts.included_in_block_timestamp / 1000000000) as timestamp,
+    receipt_predecessor_account_id as account_id,
+    TO_TIMESTAMP(receipt_included_in_block_timestamp / 1000000000) as timestamp,
     receipts.originated_from_transaction_hash as transaction_hash 
-  FROM receipts
-  JOIN action_receipt_actions ON receipts.receipt_id = action_receipt_actions.receipt_id 
+  FROM action_receipt_actions 
+  JOIN receipts using (receipt_id)
   WHERE
-    receipts.receiver_account_id = 'factory.bridge.near'
-    AND action_receipt_actions.args ->> 'method_name' = 'deposit'
-    AND TO_TIMESTAMP(receipts.included_in_block_timestamp/1000000000) > '${timestamp}'
-  ORDER BY included_in_block_timestamp DESC`, (error, results) => {
+    receipt_receiver_account_id = 'factory.bridge.near'
+    AND args ->> 'method_name' = 'deposit'
+    AND TO_TIMESTAMP(receipt_included_in_block_timestamp/1000000000) > '${timestamp}'
+  ORDER BY receipt_included_in_block_timestamp DESC`, (error, results) => {
       if (error) {
         reject(error)
       }
