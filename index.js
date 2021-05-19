@@ -20,7 +20,7 @@ const API_KEY = 'JGGYBCHQWMQ9TIU2QVSKI2V1AA43SNSVEW'
 let ERC_TOKEN_ASSET = null
 let ERC_TOKEN_DEPOSIT = null
 let ERC_TOKEN_WITHDRAW = null
-let TIME_THRESHOLD = 1618441854
+let TIME_THRESHOLD = 1619410620
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -152,11 +152,11 @@ async function getPriceFromCoingecko(token, date) {
   })
   if (response.ok) {
     let res = await response.json()
-    
+    console.log(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`)
     if(res.market_data){
+      console.log(res.market_data.current_price.usd)
       return res.market_data.current_price.usd.toFixed(5)
     }else {
-      console.log(`https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`)
       console.log(res)
       return null
     }
@@ -185,7 +185,7 @@ const getPrice = async (array) => {
     if(token.length>0) {
       let id = token[0].id
       price = await getPriceFromCoingecko(id, array[i].priceTime)
-      console.log(id, price)
+      console.log(id, price, array[i].priceTime)
     } else {
       console.log(array[i].symbol)
       price = 0

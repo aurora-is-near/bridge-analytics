@@ -28,7 +28,7 @@ async function loadJsonToBigquery(file, table) {
           throw err;
       }
   
-      console.log("File is deleted.");
+      console.log("File is deleted.", file);
   })
   }
 }
@@ -56,10 +56,39 @@ async function loadJsonToBigquery_holder(file, table) {
           throw err;
       }
   
-      console.log("File is deleted.");
+      console.log("File is deleted.", file);
+  })
+  }
+}
+
+// aurora project
+const auroraDataset = 'aurora'
+async function loadJsonToBigquery_aurora(file, table) {
+  const metadata = {
+    sourceFormat: 'NEWLINE_DELIMITED_JSON',
+    location: 'US',
+  };
+  const [job] = await bigquery
+    .dataset(auroraDataset)
+    .table(table)
+    .load(file, metadata)
+
+  console.log(`Job ${job.id} completed.`)
+
+  const errors = job.status.errors;
+  if (errors && errors.length > 0) {
+    throw errors;
+  } else {
+    fs.unlink(file,(err) => {
+      if (err) {
+          throw err;
+      }
+  
+      console.log("File is deleted.", file);
   })
   }
 }
 
 exports.loadJsonToBigquery = loadJsonToBigquery
 exports.loadJsonToBigquery_holder = loadJsonToBigquery_holder
+exports.loadJsonToBigquery_aurora = loadJsonToBigquery_aurora

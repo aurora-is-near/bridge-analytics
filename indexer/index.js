@@ -113,8 +113,22 @@ const queryBridgeWithdrawTransactionAction = async (timestamp) => {
   }) 
 }
 
+const queryAuroraTotalTransactionsNumbe = async () => {
+  return await new Promise(function(resolve, reject) {
+    pool.query(`select count(*)
+    from transactions
+    where signer_account_id = 'aurora' or receiver_account_id = 'aurora'`, (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows[0].count);
+    })
+  }) 
+}
+
 exports.queryBridgeTokenHolders = queryBridgeTokenHolders
 exports.queryBridgeMintTransactionAction = queryBridgeMintTransactionAction
 exports.queryBridgeDepositTransaction = queryBridgeDepositTransaction
 exports.queryBridgeFinishWithdrawTransaction = queryBridgeFinishWithdrawTransaction
 exports.queryBridgeWithdrawTransactionAction = queryBridgeWithdrawTransactionAction
+exports.queryAuroraTotalTransactionsNumbe = queryAuroraTotalTransactionsNumbe

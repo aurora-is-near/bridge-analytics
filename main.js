@@ -15,8 +15,8 @@ const {loadJsonToBigquery} = require('./bigquery')
 const tokenListData = require('./tokenList.json')
 const tokenList = tokenListData.token
 
-let DEPOSIT_TIME_THREAD = '2021-01-01 00:00:00'
-let FINISH_WITHDRAW_TIME_THREAD = '2021-01-01 00:00:00'
+let DEPOSIT_TIME_THREAD = '2021-05-18 22:23:31'
+let FINISH_WITHDRAW_TIME_THREAD = '2021-05-19 03:11:08'
 let MINT_TIME_THREAD = '2021-01-01 00:00:00'
 let WITHDRAW_TIME_THREAD = '2021-01-01 00:00:00'
 
@@ -33,7 +33,7 @@ try {
 }
 
 async function main() {
-  console.log('near deposit update every 3 hour')
+  console.log('near deposit update every day')
   while (true) {
         while (true) {
             try {
@@ -51,59 +51,59 @@ async function main() {
             }
         }
 
-        while ( fs.existsSync(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`)) {
-          try {
-              loadJsonToBigquery(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`, 'near_deposit_transaction')
-              console.log('near deposit transaction inserted')
-              break
-          } catch (e) {
-              console.error('error to submit deposit transaction to table: ')
-              console.error(e)
-              await sleep(60000);
-              continue;
-          }
-        }
+        // while ( fs.existsSync(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`)) {
+        //   try {
+        //       loadJsonToBigquery(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`, 'near_deposit_transaction')
+        //       console.log('near deposit transaction inserted')
+        //       break
+        //   } catch (e) {
+        //       console.error('error to submit deposit transaction to table: ')
+        //       console.error(e)
+        //       await sleep(60000);
+        //       continue;
+        //   }
+        // }
 
-        while ( fs.existsSync(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`)) {
-          try {
-              loadJsonToBigquery(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`, 'near_finish_withdraw_transaction')
-              console.log('near withdraw transaction inserted')
-              break
-          } catch (e) {
-              console.error('error to submit withdraw transaction to table: ')
-              console.error(e)
-              await sleep(60000);
-              continue;
-          }
-        }
+        // while ( fs.existsSync(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`)) {
+        //   try {
+        //       loadJsonToBigquery(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`, 'near_finish_withdraw_transaction')
+        //       console.log('near withdraw transaction inserted')
+        //       break
+        //   } catch (e) {
+        //       console.error('error to submit withdraw transaction to table: ')
+        //       console.error(e)
+        //       await sleep(60000);
+        //       continue;
+        //   }
+        // }
 
-        while ( fs.existsSync(`./assetHistory/near_mint_${MINT_TIME_THREAD}`)) {
-          try {
-              loadJsonToBigquery(`./assetHistory/near_mint_${MINT_TIME_THREAD}`, 'near_mint')
-              console.log('near mint inserted')
-              break
-          } catch (e) {
-              console.error('error to submit mint to table: ')
-              console.error(e)
-              await sleep(60000);
-              continue;
-          }
-        }
+        // while ( fs.existsSync(`./assetHistory/near_mint_${MINT_TIME_THREAD}`)) {
+        //   try {
+        //       loadJsonToBigquery(`./assetHistory/near_mint_${MINT_TIME_THREAD}`, 'near_mint')
+        //       console.log('near mint inserted')
+        //       break
+        //   } catch (e) {
+        //       console.error('error to submit mint to table: ')
+        //       console.error(e)
+        //       await sleep(60000);
+        //       continue;
+        //   }
+        // }
 
-        while ( fs.existsSync(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`)) {
-          try {
-              loadJsonToBigquery(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`, 'near_withdraw')
-              console.log('near withdraw inserted')
-              break
-          } catch (e) {
-              console.error('error to submit withdraw to table: ')
-              console.error(e)
-              await sleep(60000);
-              continue;
-          }
-        }
+        // while ( fs.existsSync(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`)) {
+        //   try {
+        //       loadJsonToBigquery(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`, 'near_withdraw')
+        //       console.log('near withdraw inserted')
+        //       break
+        //   } catch (e) {
+        //       console.error('error to submit withdraw to table: ')
+        //       console.error(e)
+        //       await sleep(60000);
+        //       continue;
+        //   }
+        // }
         
-        await sleep(3*60*60000);
+        await sleep(24*60*60000);
   }
 }
 
