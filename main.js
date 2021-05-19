@@ -33,7 +33,7 @@ try {
 }
 
 async function main() {
-  console.log('near deposit update every day')
+  console.log('near deposit update every 3 hr')
   while (true) {
         while (true) {
             try {
@@ -99,7 +99,7 @@ async function main() {
           }
         }
         
-        await sleep(24*60*60000);
+        await sleep(3*60*60000);
   }
 }
 
