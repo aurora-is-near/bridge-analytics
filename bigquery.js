@@ -73,8 +73,6 @@ async function loadJsonToBigquery_aurora(file, table) {
     .table(table)
     .load(file, metadata)
 
-  console.log(`Job ${job.id} completed.`)
-
   const errors = job.status.errors;
   if (errors && errors.length > 0) {
     throw errors;
@@ -83,8 +81,6 @@ async function loadJsonToBigquery_aurora(file, table) {
       if (err) {
           throw err;
       }
-  
-      console.log("File is deleted.", file);
   })
   }
 }

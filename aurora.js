@@ -32,8 +32,8 @@ async function main() {
   while (true) {
         while (true) {
           try {
-            // await getAccountAmountFromNear()
-            await getGeneralInfo()
+            await getAccountAmountFromNear()
+            // await getGeneralInfo()
             console.log('near nep amount and price updated')
             break
           } catch (e) {
@@ -45,9 +45,9 @@ async function main() {
         }
       }
 
-      while (fs.existsSync('./assetHistory/near_balance')) {
+      while (false && fs.existsSync('./assetHistory/nep_balance')) {
         try {
-            loadJsonToBigquery('./assetHistory/near_balance', 'near_balance')
+            loadJsonToBigquery_aurora('./assetHistory/nep_balance', 'nep_balance')
             break
         } catch (e) {
             console.error('error to submit to volume table: ')

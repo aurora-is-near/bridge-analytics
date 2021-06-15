@@ -107,8 +107,8 @@ async function getNearDepositAndFinishWithDraw() {
   let deposit = await queryBridgeDepositTransaction(DEPOSIT_TIME_THREAD)
   let withdraw = await queryBridgeFinishWithdrawTransaction(FINISH_WITHDRAW_TIME_THREAD)
   
-  DEPOSIT_TIME_THREAD = moment(deposit[0].timestamp).format("YYYY-MM-DD HH:mm:ss")
-  FINISH_WITHDRAW_TIME_THREAD = moment(withdraw[0].timestamp).format("YYYY-MM-DD HH:mm:ss")
+  DEPOSIT_TIME_THREAD = moment(deposit[0].timestamp).add(1,'seconds').format("YYYY-MM-DD HH:mm:ss")
+  FINISH_WITHDRAW_TIME_THREAD = moment(withdraw[0].timestamp).add(1,'seconds').format("YYYY-MM-DD HH:mm:ss")
   console.log("current deposit timestamp: ", DEPOSIT_TIME_THREAD)
   console.log("current finish withdraw timestamp", FINISH_WITHDRAW_TIME_THREAD)
 
@@ -123,8 +123,8 @@ async function getMintAndWithdrawAction() {
   let deposit = await queryBridgeMintTransactionAction(MINT_TIME_THREAD)
   let withdraw = await queryBridgeWithdrawTransactionAction(WITHDRAW_TIME_THREAD)
 
-  MINT_TIME_THREAD = moment(deposit[0].timestamp).format("YYYY-MM-DD HH:mm:ss")
-  WITHDRAW_TIME_THREAD = moment(withdraw[0].timestamp).format("YYYY-MM-DD HH:mm:ss")
+  MINT_TIME_THREAD = moment(deposit[0].timestamp).add(1,'seconds').format("YYYY-MM-DD HH:mm:ss")
+  WITHDRAW_TIME_THREAD = moment(withdraw[0].timestamp).add(1,'seconds').format("YYYY-MM-DD HH:mm:ss")
   console.log("current mint timestamp: ", MINT_TIME_THREAD)
   console.log("current withdraw and transfer timestamp", WITHDRAW_TIME_THREAD)
 
