@@ -15,10 +15,10 @@ const {loadJsonToBigquery} = require('./bigquery')
 const tokenListData = require('./tokenList.json')
 const tokenList = tokenListData.token
 
-let DEPOSIT_TIME_THREAD = '2021-03-15 00:00:00'
-let FINISH_WITHDRAW_TIME_THREAD = '2021-03-15 00:00:00'
-let MINT_TIME_THREAD = '2021-03-15 00:00:00'
-let WITHDRAW_TIME_THREAD = '2021-03-15 00:00:00'
+let DEPOSIT_TIME_THREAD = '2020-07-01 00:00:00'
+let FINISH_WITHDRAW_TIME_THREAD = '2020-07-01 00:00:00'
+let MINT_TIME_THREAD = '2020-07-01 00:00:00'
+let WITHDRAW_TIME_THREAD = '2020-07-01 00:00:00'
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -51,9 +51,9 @@ async function main() {
             }
         }
 
-        while ( fs.existsSync(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`)) {
+        while ( fs.existsSync('./assetHistory/near_deposit_'+DEPOSIT_TIME_THREAD)) {
           try {
-              loadJsonToBigquery(`./assetHistory/near_deposit_${DEPOSIT_TIME_THREAD}`, 'near_deposit_transaction')
+              loadJsonToBigquery('./assetHistory/near_deposit_'+DEPOSIT_TIME_THREAD, 'near_deposit_transaction')
               break
           } catch (e) {
               console.error('error to submit deposit transaction to table: ')
@@ -63,9 +63,9 @@ async function main() {
           }
         }
 
-        while ( fs.existsSync(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`)) {
+        while ( fs.existsSync('./assetHistory/near_finish_withdraw_'+FINISH_WITHDRAW_TIME_THREAD)) {
           try {
-              loadJsonToBigquery(`./assetHistory/near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`, 'near_finish_withdraw_transaction')
+              loadJsonToBigquery('./assetHistory/near_finish_withdraw_'+FINISH_WITHDRAW_TIME_THREAD, 'near_finish_withdraw_transaction')
               break
           } catch (e) {
               console.error('error to submit withdraw transaction to table: ')
@@ -75,9 +75,9 @@ async function main() {
           }
         }
 
-        while ( fs.existsSync(`./assetHistory/near_mint_${MINT_TIME_THREAD}`)) {
+        while ( fs.existsSync('./assetHistory/near_mint_'+MINT_TIME_THREAD)) {
           try {
-              loadJsonToBigquery(`./assetHistory/near_mint_${MINT_TIME_THREAD}`, 'near_mint')
+              loadJsonToBigquery('./assetHistory/near_mint_'+MINT_TIME_THREAD, 'near_mint')
               break
           } catch (e) {
               console.error('error to submit mint to table: ')
@@ -87,9 +87,9 @@ async function main() {
           }
         }
 
-        while ( fs.existsSync(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`)) {
+        while ( fs.existsSync('./assetHistory/near_withdraw_'+WITHDRAW_TIME_THREAD)) {
           try {
-              loadJsonToBigquery(`./assetHistory/near_withdraw_${WITHDRAW_TIME_THREAD}`, 'near_withdraw')
+              loadJsonToBigquery('./assetHistory/near_withdraw_'+WITHDRAW_TIME_THREAD, 'near_withdraw')
               break
           } catch (e) {
               console.error('error to submit withdraw to table: ')
@@ -113,9 +113,9 @@ async function getNearDepositAndFinishWithDraw() {
   console.log("current finish withdraw timestamp", FINISH_WITHDRAW_TIME_THREAD)
 
   let depositFile = deposit.map(d => ({...d, timestamp: moment(d.timestamp).format("YYYY-MM-DD HH:mm:ss")})).map(JSON.stringify).join('\n')
-  storeData(depositFile, path.join(__dirname, 'assetHistory', `near_deposit_${DEPOSIT_TIME_THREAD}`))
+  storeData(depositFile, path.join(__dirname, 'assetHistory', 'near_deposit_'+DEPOSIT_TIME_THREAD))
   let withdrawFile = withdraw.map(d => ({...d, timestamp: moment(d.timestamp).format("YYYY-MM-DD HH:mm:ss")})).map(JSON.stringify).join('\n')
-  storeData(withdrawFile, path.join(__dirname, 'assetHistory', `near_finish_withdraw_${FINISH_WITHDRAW_TIME_THREAD}`))
+  storeData(withdrawFile, path.join(__dirname, 'assetHistory', 'near_finish_withdraw_'+FINISH_WITHDRAW_TIME_THREAD))
 
 }
 
@@ -162,9 +162,9 @@ async function getMintAndWithdrawAction() {
   })
   
   let depositFile = deposit.map(JSON.stringify).join('\n')
-  storeData(depositFile, path.join(__dirname, 'assetHistory', `near_mint_${MINT_TIME_THREAD}`))
+  storeData(depositFile, path.join(__dirname, 'assetHistory', 'near_mint_'+MINT_TIME_THREAD))
   let withdrawFile = withdraw.map(JSON.stringify).join('\n')
-  storeData(withdrawFile, path.join(__dirname, 'assetHistory', `near_withdraw_${WITHDRAW_TIME_THREAD}`))
+  storeData(withdrawFile, path.join(__dirname, 'assetHistory', 'near_withdraw_'+WITHDRAW_TIME_THREAD))
 
 }
 
