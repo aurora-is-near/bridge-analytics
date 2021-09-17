@@ -1,5 +1,5 @@
 async function getPriceFromCoingecko(token, date) {
-  let response = await tFetch(
+  let response = await fetch(
     `https://api.coingecko.com/api/v3/coins/${token}/history?date=${date}&localization=false`,
     {
       headers: {
@@ -45,6 +45,7 @@ const getPrice = async (array) => {
 const fs = require('fs');
 let tokenMapData = require('./tokenMap');
 const tokenMap = tokenMapData.list;
+const fetch = require('node-fetch');
 
 const storeData = (data, path) => {
   try {
