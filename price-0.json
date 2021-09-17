@@ -1,0 +1,154 @@
+[
+  {
+    "symbol": "LENS",
+    "amount": "710.0",
+    "price": "0.0",
+    "timestamp": "2021-06-03 19:54:10 UTC",
+    "priceTime": "03-06-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "SANC",
+    "amount": "50000.0",
+    "price": "0.0",
+    "timestamp": "2021-05-02 02:11:24 UTC",
+    "priceTime": "02-05-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "CODE",
+    "amount": "1090000.767",
+    "price": "0.0",
+    "timestamp": "2021-07-10 20:53:17 UTC",
+    "priceTime": "10-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "7.443592",
+    "price": "0.0",
+    "timestamp": "2021-06-05 00:53:18 UTC",
+    "priceTime": "05-06-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "LENS",
+    "amount": "710.0",
+    "price": "0.0",
+    "timestamp": "2021-05-15 12:15:06 UTC",
+    "priceTime": "15-05-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "14337.838732",
+    "price": "0.0",
+    "timestamp": "2021-06-01 00:49:37 UTC",
+    "priceTime": "01-06-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "RHOC",
+    "amount": "100.0",
+    "price": "0.0",
+    "timestamp": "2021-08-10 09:27:07 UTC",
+    "priceTime": "10-08-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "FTX Token",
+    "amount": "23.5988",
+    "price": "0.0",
+    "timestamp": "2021-07-09 04:49:33 UTC",
+    "priceTime": "09-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "CODE",
+    "amount": "1090000.767",
+    "price": "0.0",
+    "timestamp": "2021-07-09 22:57:25 UTC",
+    "priceTime": "09-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "5000.0",
+    "price": "0.0",
+    "timestamp": "2021-09-03 09:40:56 UTC",
+    "priceTime": "03-09-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "SLD",
+    "amount": "110.0",
+    "price": "0.0",
+    "timestamp": "2021-07-15 11:55:25 UTC",
+    "priceTime": "15-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DOOM",
+    "amount": "7.0",
+    "price": "0.0",
+    "timestamp": "2021-04-12 18:47:49 UTC",
+    "priceTime": "12-04-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "JPYC",
+    "amount": "1000.0",
+    "price": "0.0",
+    "timestamp": "2021-08-17 22:17:29 UTC",
+    "priceTime": "17-08-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "1INCH",
+    "amount": "50.0",
+    "price": "0.0",
+    "timestamp": "2021-05-28 00:53:28 UTC",
+    "priceTime": "28-05-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "21.56",
+    "price": "0.0",
+    "timestamp": "2021-05-24 01:10:33 UTC",
+    "priceTime": "24-05-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "MOTION",
+    "amount": "4287659.76",
+    "price": "0.0",
+    "timestamp": "2021-08-28 20:17:03 UTC",
+    "priceTime": "28-08-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "1MIL",
+    "amount": "100.0",
+    "price": "0.0",
+    "timestamp": "2021-09-09 11:47:53 UTC",
+    "priceTime": "09-09-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "LDT",
+    "amount": "2000000.0",
+    "price": "0.0",
+    "timestamp": "2021-06-12 10:22:19 UTC",
+    "priceTime": "12-06-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "FORTH",
+    "amount": "50.0",
+    "price": "0.0",
+    "timestamp": "2021-04-30 03:26:39 UTC",
+    "priceTime": "30-04-2021",
+    "action": "deposit"
+  }
+]

@@ -55,7 +55,7 @@ const storeData = (data, path) => {
   }
 };
 
-let ori_data = require('./no-price.json');
+let ori_data = require('./price-0.json');
 
 async function main() {
   let new_data = await getPrice(ori_data);
@@ -63,7 +63,9 @@ async function main() {
   storeData(file, 'fix-price-4');
 }
 
-// main();
+main();
+
+// store part
 const { loadJsonToBigquery } = require('./bigquery');
 
 function storeFile() {
@@ -73,4 +75,4 @@ function storeFile() {
   loadJsonToBigquery('fix-price-4', 'asset');
 }
 
-storeFile();
+// storeFile();
