@@ -63,16 +63,13 @@ async function main() {
   storeData(file, 'fix-price-4');
 }
 
-main();
+// main();
 
 // store part
 const { loadJsonToBigquery } = require('./bigquery');
 
 function storeFile() {
-  loadJsonToBigquery('fix-price-1', 'asset');
-  loadJsonToBigquery('fix-price-2', 'asset');
-  loadJsonToBigquery('fix-price-3', 'asset');
   loadJsonToBigquery('fix-price-4', 'asset');
 }
 
-// storeFile();
+storeFile();
