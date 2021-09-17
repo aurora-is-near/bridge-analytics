@@ -60,7 +60,7 @@ let ori_data = require('./no-price.json');
 async function main() {
   let new_data = await getPrice(ori_data);
   let file = new_data.map(JSON.stringify).join('\n');
-  storeData(file, 'fix-price');
+  storeData(file, 'fix-price-2');
 }
 
 main();
