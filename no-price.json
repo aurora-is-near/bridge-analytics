@@ -1,0 +1,1594 @@
+[
+  {
+    "symbol": "DAI",
+    "amount": "1.328502787",
+    "price": null,
+    "timestamp": "2021-07-31 02:09:58 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "4124.739165855",
+    "price": null,
+    "timestamp": "2021-07-31 02:45:15 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "475.0",
+    "price": null,
+    "timestamp": "2021-07-31 04:34:47 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "96.773593",
+    "price": null,
+    "timestamp": "2021-07-31 04:34:47 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2000.0",
+    "price": null,
+    "timestamp": "2021-07-31 13:43:32 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "3.0",
+    "price": null,
+    "timestamp": "2021-07-31 02:44:02 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.0",
+    "price": null,
+    "timestamp": "2021-07-31 03:07:06 UTC",
+    "priceTime": "31-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2880.0",
+    "price": null,
+    "timestamp": "2021-07-31 08:52:34 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "7154.868507",
+    "price": null,
+    "timestamp": "2021-07-31 19:22:49 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2516.676986594",
+    "price": null,
+    "timestamp": "2021-07-31 23:45:23 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "900.0",
+    "price": null,
+    "timestamp": "2021-07-31 02:55:44 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "191.88673",
+    "price": null,
+    "timestamp": "2021-07-31 12:29:52 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1750.0",
+    "price": null,
+    "timestamp": "2021-07-31 19:22:49 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2333.845179",
+    "price": null,
+    "timestamp": "2021-07-31 02:04:50 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.13632",
+    "price": null,
+    "timestamp": "2021-07-31 09:47:17 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.0966",
+    "price": null,
+    "timestamp": "2021-07-31 12:48:56 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.740058283",
+    "price": null,
+    "timestamp": "2021-07-31 19:22:49 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.913667488",
+    "price": null,
+    "timestamp": "2021-07-31 23:45:24 UTC",
+    "priceTime": "31-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1301.82409543",
+    "price": null,
+    "timestamp": "2021-07-11 01:16:06 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-11 10:48:50 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "200.0",
+    "price": null,
+    "timestamp": "2021-07-11 22:42:33 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "UNI",
+    "amount": "1.0",
+    "price": null,
+    "timestamp": "2021-07-11 15:10:21 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "20.0",
+    "price": null,
+    "timestamp": "2021-07-11 01:13:34 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1302.710224",
+    "price": null,
+    "timestamp": "2021-07-11 01:23:58 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "112.415386",
+    "price": null,
+    "timestamp": "2021-07-11 13:49:30 UTC",
+    "priceTime": "11-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "20.0",
+    "price": null,
+    "timestamp": "2021-07-11 15:10:15 UTC",
+    "priceTime": "11-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "10.647233",
+    "price": null,
+    "timestamp": "2021-07-05 10:35:59 UTC",
+    "priceTime": "05-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "63.302701",
+    "price": null,
+    "timestamp": "2021-07-19 04:43:24 UTC",
+    "priceTime": "19-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "UNI",
+    "amount": "20.0",
+    "price": null,
+    "timestamp": "2021-07-19 07:30:00 UTC",
+    "priceTime": "19-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "UNI",
+    "amount": "10.05",
+    "price": null,
+    "timestamp": "2021-07-19 18:20:57 UTC",
+    "priceTime": "19-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "6305.0",
+    "price": null,
+    "timestamp": "2021-07-25 03:52:46 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "999.0",
+    "price": null,
+    "timestamp": "2021-07-25 04:00:55 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1193.60494135",
+    "price": null,
+    "timestamp": "2021-07-25 06:02:40 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "30000.0",
+    "price": null,
+    "timestamp": "2021-07-25 08:10:39 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-25 13:47:22 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "10.0",
+    "price": null,
+    "timestamp": "2021-07-25 14:12:06 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1031.72",
+    "price": null,
+    "timestamp": "2021-07-25 14:13:44 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "4968.5055014",
+    "price": null,
+    "timestamp": "2021-07-25 14:39:35 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "33984.990972",
+    "price": null,
+    "timestamp": "2021-07-25 16:37:12 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "3309.0",
+    "price": null,
+    "timestamp": "2021-07-25 17:28:36 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1400.0",
+    "price": null,
+    "timestamp": "2021-07-25 18:09:38 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "246.379764",
+    "price": null,
+    "timestamp": "2021-07-25 19:21:27 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "3000.0",
+    "price": null,
+    "timestamp": "2021-07-25 02:24:49 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "248.0",
+    "price": null,
+    "timestamp": "2021-07-25 15:55:07 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "51.0",
+    "price": null,
+    "timestamp": "2021-07-25 20:27:00 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2500.0",
+    "price": null,
+    "timestamp": "2021-07-25 00:12:03 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.4",
+    "price": null,
+    "timestamp": "2021-07-25 02:21:47 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "2.2",
+    "price": null,
+    "timestamp": "2021-07-25 02:42:26 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.092895",
+    "price": null,
+    "timestamp": "2021-07-25 03:24:24 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.089698334",
+    "price": null,
+    "timestamp": "2021-07-25 03:28:27 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.50972261",
+    "price": null,
+    "timestamp": "2021-07-25 03:49:00 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.02",
+    "price": null,
+    "timestamp": "2021-07-25 04:55:32 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "3.108295807",
+    "price": null,
+    "timestamp": "2021-07-25 05:08:16 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "13.77758",
+    "price": null,
+    "timestamp": "2021-07-25 05:28:19 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.0468711",
+    "price": null,
+    "timestamp": "2021-07-25 16:37:50 UTC",
+    "priceTime": "25-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "220.0",
+    "price": null,
+    "timestamp": "2021-07-10 12:03:20 UTC",
+    "priceTime": "10-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-10 16:58:57 UTC",
+    "priceTime": "10-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "80.0",
+    "price": null,
+    "timestamp": "2021-07-10 12:34:14 UTC",
+    "priceTime": "10-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.35",
+    "price": null,
+    "timestamp": "2021-07-10 21:16:24 UTC",
+    "priceTime": "10-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "33.116072",
+    "price": null,
+    "timestamp": "2021-07-18 14:29:09 UTC",
+    "priceTime": "18-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1998.0",
+    "price": null,
+    "timestamp": "2021-07-24 18:51:27 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1990.769",
+    "price": null,
+    "timestamp": "2021-07-24 19:03:47 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "3298.0",
+    "price": null,
+    "timestamp": "2021-07-24 19:07:18 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1340.0",
+    "price": null,
+    "timestamp": "2021-07-24 20:20:05 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "65985.0",
+    "price": null,
+    "timestamp": "2021-07-24 20:41:31 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "LINK",
+    "amount": "20.654130136",
+    "price": null,
+    "timestamp": "2021-07-24 22:01:31 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "PPAY",
+    "amount": "9.066846287",
+    "price": null,
+    "timestamp": "2021-07-24 21:00:10 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "97.625196",
+    "price": null,
+    "timestamp": "2021-07-24 20:21:46 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2191.0",
+    "price": null,
+    "timestamp": "2021-07-24 19:24:48 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.996",
+    "price": null,
+    "timestamp": "2021-07-24 18:47:17 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.995",
+    "price": null,
+    "timestamp": "2021-07-24 19:05:01 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.1",
+    "price": null,
+    "timestamp": "2021-07-24 19:44:31 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "9.0",
+    "price": null,
+    "timestamp": "2021-07-24 20:50:16 UTC",
+    "priceTime": "24-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "LINK",
+    "amount": "20.5059",
+    "price": null,
+    "timestamp": "2021-07-17 11:07:51 UTC",
+    "priceTime": "17-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-17 17:56:36 UTC",
+    "priceTime": "17-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2497.051840136",
+    "price": null,
+    "timestamp": "2021-07-23 05:36:21 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "437.54",
+    "price": null,
+    "timestamp": "2021-07-23 08:08:44 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "250.0",
+    "price": null,
+    "timestamp": "2021-07-23 08:40:48 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "3040.0",
+    "price": null,
+    "timestamp": "2021-07-23 10:59:22 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1.234567891",
+    "price": null,
+    "timestamp": "2021-07-23 20:20:10 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "0.123456789",
+    "price": null,
+    "timestamp": "2021-07-23 20:40:59 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "BUSD",
+    "amount": "107.16634617",
+    "price": null,
+    "timestamp": "2021-07-23 05:13:43 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "5.0",
+    "price": null,
+    "timestamp": "2021-07-23 07:30:38 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-23 14:25:11 UTC",
+    "priceTime": "23-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "SNX",
+    "amount": "0.25",
+    "price": null,
+    "timestamp": "2021-07-30 09:00:39 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "10.5",
+    "price": null,
+    "timestamp": "2021-07-30 05:53:19 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-30 10:23:31 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "5.0",
+    "price": null,
+    "timestamp": "2021-07-30 17:36:12 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "7000.0",
+    "price": null,
+    "timestamp": "2021-07-30 19:33:00 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-30 02:16:09 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "1112.15538",
+    "price": null,
+    "timestamp": "2021-07-30 06:34:10 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2333.845179",
+    "price": null,
+    "timestamp": "2021-07-30 13:12:52 UTC",
+    "priceTime": "30-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "LINK",
+    "amount": "20.654130136",
+    "price": null,
+    "timestamp": "2021-07-30 15:39:05 UTC",
+    "priceTime": "30-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1932.186346",
+    "price": null,
+    "timestamp": "2021-07-30 07:05:40 UTC",
+    "priceTime": "30-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "7235.0",
+    "price": null,
+    "timestamp": "2021-07-30 07:20:31 UTC",
+    "priceTime": "30-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2.67404477",
+    "price": null,
+    "timestamp": "2021-07-22 03:56:53 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "10.927035561",
+    "price": null,
+    "timestamp": "2021-07-22 05:22:32 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "34.98370293",
+    "price": null,
+    "timestamp": "2021-07-22 10:17:29 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1646.12883234",
+    "price": null,
+    "timestamp": "2021-07-22 10:52:09 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "10766.29628263",
+    "price": null,
+    "timestamp": "2021-07-22 12:43:06 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "98.1865",
+    "price": null,
+    "timestamp": "2021-07-22 18:28:03 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-22 18:56:09 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-22 19:07:28 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "322.600921",
+    "price": null,
+    "timestamp": "2021-07-22 01:36:33 UTC",
+    "priceTime": "22-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "999.0",
+    "price": null,
+    "timestamp": "2021-07-22 09:24:27 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.995",
+    "price": null,
+    "timestamp": "2021-07-22 08:40:07 UTC",
+    "priceTime": "22-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1.01",
+    "price": null,
+    "timestamp": "2021-07-20 12:52:56 UTC",
+    "priceTime": "20-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1070.0",
+    "price": null,
+    "timestamp": "2021-07-20 22:30:13 UTC",
+    "priceTime": "20-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.01",
+    "price": null,
+    "timestamp": "2021-07-20 02:02:13 UTC",
+    "priceTime": "20-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "4000.0",
+    "price": null,
+    "timestamp": "2021-07-20 02:16:12 UTC",
+    "priceTime": "20-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2916.364476",
+    "price": null,
+    "timestamp": "2021-07-20 10:36:42 UTC",
+    "priceTime": "20-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "3438.942844",
+    "price": null,
+    "timestamp": "2021-07-20 11:18:36 UTC",
+    "priceTime": "20-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "57.382535",
+    "price": null,
+    "timestamp": "2021-07-20 11:22:51 UTC",
+    "priceTime": "20-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.053971981",
+    "price": null,
+    "timestamp": "2021-07-20 09:07:33 UTC",
+    "priceTime": "20-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.112",
+    "price": null,
+    "timestamp": "2021-07-12 05:46:33 UTC",
+    "priceTime": "12-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "2190.808116",
+    "price": null,
+    "timestamp": "2021-07-21 01:45:15 UTC",
+    "priceTime": "21-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "547.8",
+    "price": null,
+    "timestamp": "2021-07-21 02:49:21 UTC",
+    "priceTime": "21-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "745.847102",
+    "price": null,
+    "timestamp": "2021-07-21 08:21:04 UTC",
+    "priceTime": "21-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "SNX",
+    "amount": "1.0",
+    "price": null,
+    "timestamp": "2021-07-21 08:24:07 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "10.0",
+    "price": null,
+    "timestamp": "2021-07-21 08:38:19 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "318.379647317",
+    "price": null,
+    "timestamp": "2021-07-21 09:10:36 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.1",
+    "price": null,
+    "timestamp": "2021-07-21 11:15:18 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.4",
+    "price": null,
+    "timestamp": "2021-07-21 11:29:38 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.996007986",
+    "price": null,
+    "timestamp": "2021-07-21 11:59:43 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-21 19:44:03 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "899.0",
+    "price": null,
+    "timestamp": "2021-07-21 20:01:08 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "959.0",
+    "price": null,
+    "timestamp": "2021-07-21 23:13:11 UTC",
+    "priceTime": "21-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "BAL",
+    "amount": "1.0",
+    "price": null,
+    "timestamp": "2021-07-16 08:08:26 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "BAL",
+    "amount": "0.01",
+    "price": null,
+    "timestamp": "2021-07-16 09:05:36 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "BAL",
+    "amount": "5.0E-4",
+    "price": null,
+    "timestamp": "2021-07-16 09:19:14 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "BAL",
+    "amount": "7.0E-4",
+    "price": null,
+    "timestamp": "2021-07-16 12:51:04 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "COMP",
+    "amount": "0.001",
+    "price": null,
+    "timestamp": "2021-07-16 21:27:18 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "50.0",
+    "price": null,
+    "timestamp": "2021-07-16 09:57:27 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "10.0",
+    "price": null,
+    "timestamp": "2021-07-16 17:13:25 UTC",
+    "priceTime": "16-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2286.843322",
+    "price": null,
+    "timestamp": "2021-07-28 06:28:11 UTC",
+    "priceTime": "28-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "5.0",
+    "price": null,
+    "timestamp": "2021-07-28 01:04:21 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "3.938",
+    "price": null,
+    "timestamp": "2021-07-28 01:24:01 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.4",
+    "price": null,
+    "timestamp": "2021-07-28 09:16:52 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "2.0",
+    "price": null,
+    "timestamp": "2021-07-28 10:03:43 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.101641421",
+    "price": null,
+    "timestamp": "2021-07-28 17:13:32 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.5",
+    "price": null,
+    "timestamp": "2021-07-28 20:57:00 UTC",
+    "priceTime": "28-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "3.35",
+    "price": null,
+    "timestamp": "2021-07-28 23:32:41 UTC",
+    "priceTime": "28-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1021.9",
+    "price": null,
+    "timestamp": "2021-07-27 05:56:32 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "5693.15138275",
+    "price": null,
+    "timestamp": "2021-07-27 12:26:01 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "4994.107766622",
+    "price": null,
+    "timestamp": "2021-07-27 20:21:26 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "8309.92",
+    "price": null,
+    "timestamp": "2021-07-27 20:55:45 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "9988.2",
+    "price": null,
+    "timestamp": "2021-07-27 21:42:55 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.0",
+    "price": null,
+    "timestamp": "2021-07-27 06:58:10 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "29.0",
+    "price": null,
+    "timestamp": "2021-07-27 09:03:19 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "5.0",
+    "price": null,
+    "timestamp": "2021-07-27 19:24:15 UTC",
+    "priceTime": "27-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "9890.9",
+    "price": null,
+    "timestamp": "2021-07-27 21:42:03 UTC",
+    "priceTime": "27-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "16586.0",
+    "price": null,
+    "timestamp": "2021-07-27 22:57:50 UTC",
+    "priceTime": "27-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.072534191",
+    "price": null,
+    "timestamp": "2021-07-27 23:26:48 UTC",
+    "priceTime": "27-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "20.050404651",
+    "price": null,
+    "timestamp": "2021-07-13 10:38:27 UTC",
+    "priceTime": "13-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2300.0",
+    "price": null,
+    "timestamp": "2021-07-29 09:02:56 UTC",
+    "priceTime": "29-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "50.0",
+    "price": null,
+    "timestamp": "2021-07-29 09:13:43 UTC",
+    "priceTime": "29-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "19924.0",
+    "price": null,
+    "timestamp": "2021-07-29 09:36:29 UTC",
+    "priceTime": "29-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "20000.99",
+    "price": null,
+    "timestamp": "2021-07-29 10:04:45 UTC",
+    "priceTime": "29-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "2010.0",
+    "price": null,
+    "timestamp": "2021-07-29 07:14:47 UTC",
+    "priceTime": "29-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "18519.634925992",
+    "price": null,
+    "timestamp": "2021-07-29 02:19:55 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "50.0",
+    "price": null,
+    "timestamp": "2021-07-29 08:13:58 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "5458.0",
+    "price": null,
+    "timestamp": "2021-07-29 19:35:53 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "5192.682545",
+    "price": null,
+    "timestamp": "2021-07-29 07:07:25 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "1318.714321",
+    "price": null,
+    "timestamp": "2021-07-29 09:22:12 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.750213142",
+    "price": null,
+    "timestamp": "2021-07-29 00:01:04 UTC",
+    "priceTime": "29-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "6000.0",
+    "price": null,
+    "timestamp": "2021-07-14 14:38:07 UTC",
+    "priceTime": "14-07-2021",
+    "action": "withdraw"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2092.52847798",
+    "price": null,
+    "timestamp": "2021-07-26 02:09:28 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "983.0",
+    "price": null,
+    "timestamp": "2021-07-26 02:43:49 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "10289.991951674",
+    "price": null,
+    "timestamp": "2021-07-26 03:19:19 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1748.23871231",
+    "price": null,
+    "timestamp": "2021-07-26 05:25:39 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "511.213",
+    "price": null,
+    "timestamp": "2021-07-26 06:42:16 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1632.224594205",
+    "price": null,
+    "timestamp": "2021-07-26 06:52:51 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "995.0",
+    "price": null,
+    "timestamp": "2021-07-26 07:09:28 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "302.297175",
+    "price": null,
+    "timestamp": "2021-07-26 07:09:59 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "20000.0",
+    "price": null,
+    "timestamp": "2021-07-26 07:21:21 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-26 07:41:47 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2300.0",
+    "price": null,
+    "timestamp": "2021-07-26 07:50:23 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "2991.8963",
+    "price": null,
+    "timestamp": "2021-07-26 09:42:12 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "750.0",
+    "price": null,
+    "timestamp": "2021-07-26 09:50:56 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1800.0",
+    "price": null,
+    "timestamp": "2021-07-26 09:59:23 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "490.0",
+    "price": null,
+    "timestamp": "2021-07-26 10:36:02 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "224.7",
+    "price": null,
+    "timestamp": "2021-07-26 12:17:11 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "3507.835352655",
+    "price": null,
+    "timestamp": "2021-07-26 12:20:54 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-26 13:11:26 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "UNI",
+    "amount": "0.01",
+    "price": null,
+    "timestamp": "2021-07-26 09:25:43 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-26 02:43:16 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDC",
+    "amount": "1000.0",
+    "price": null,
+    "timestamp": "2021-07-26 06:07:39 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "4000.0",
+    "price": null,
+    "timestamp": "2021-07-26 02:30:25 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "10.0",
+    "price": null,
+    "timestamp": "2021-07-26 04:00:18 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "5000.0",
+    "price": null,
+    "timestamp": "2021-07-26 05:06:36 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "2848.0",
+    "price": null,
+    "timestamp": "2021-07-26 11:10:48 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "USDT",
+    "amount": "180.662255",
+    "price": null,
+    "timestamp": "2021-07-26 12:20:54 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.7386",
+    "price": null,
+    "timestamp": "2021-07-26 05:55:37 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "7.0",
+    "price": null,
+    "timestamp": "2021-07-26 07:42:37 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "1.5",
+    "price": null,
+    "timestamp": "2021-07-26 09:51:04 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.996",
+    "price": null,
+    "timestamp": "2021-07-26 12:39:32 UTC",
+    "priceTime": "26-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "WETH",
+    "amount": "0.1",
+    "price": null,
+    "timestamp": "2021-07-15 00:17:23 UTC",
+    "priceTime": "15-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "SLD",
+    "amount": "110.0",
+    "price": null,
+    "timestamp": "2021-07-15 11:55:25 UTC",
+    "priceTime": "15-07-2021",
+    "action": "deposit"
+  },
+  {
+    "symbol": "DAI",
+    "amount": "100.0",
+    "price": null,
+    "timestamp": "2021-07-15 17:57:47 UTC",
+    "priceTime": "15-07-2021",
+    "action": "deposit"
+  }
+]
